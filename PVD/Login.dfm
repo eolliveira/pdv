@@ -3,7 +3,7 @@ object frm_login: Tfrm_login
   Top = 0
   Caption = 'PDV'
   ClientHeight = 624
-  ClientWidth = 1051
+  ClientWidth = 1331
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,16 +19,15 @@ object frm_login: Tfrm_login
   object pnl_fundo: TPanel
     Left = 0
     Top = 0
-    Width = 1051
+    Width = 1331
     Height = 624
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1061
-    ExplicitHeight = 634
+    ExplicitWidth = 1051
     object img_fundo: TImage
       Left = 1
       Top = 1
-      Width = 1049
+      Width = 1329
       Height = 622
       Align = alClient
       Picture.Data = {
@@ -6231,10 +6230,8 @@ object frm_login: Tfrm_login
         C1AC1955A7933CCEAE544FD4556B2B89F79541D0CA7ABB6A6BBD1E774D7135DD
         21B925FA0A8AAF4B26531E68AA186D2328C927115AEA6899FFD9}
       Stretch = True
-      ExplicitLeft = 9
+      ExplicitLeft = 2
       ExplicitTop = 0
-      ExplicitWidth = 1059
-      ExplicitHeight = 632
     end
     object pnl_login: TPanel
       Left = 320
@@ -6242,11 +6239,15 @@ object frm_login: Tfrm_login
       Width = 348
       Height = 327
       TabOrder = 0
+      DesignSize = (
+        348
+        327)
       object img_login: TImage
         Left = 1
         Top = 1
         Width = 346
         Height = 325
+        Cursor = crHandPoint
         Align = alClient
         Picture.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D494844520000015C0000
@@ -6555,8 +6556,54 @@ object frm_login: Tfrm_login
           00088802001010050020200A004040140080802800000151000002A200000444
           0100088802001010050020200A004040140080802800000151000002A2000004
           44010008FF036FFCF8EEC4CA7DAB0000000049454E44AE426082}
-        ExplicitLeft = 0
-        ExplicitTop = 0
+        ExplicitLeft = -55
+        ExplicitTop = -55
+      end
+      object btn_entrar: TSpeedButton
+        Left = 32
+        Top = 208
+        Width = 283
+        Height = 49
+        Cursor = crHandPoint
+        Caption = 'ENTRAR'
+        Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -19
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        OnClick = btn_entrarClick
+      end
+      object txt_usuario: TEdit
+        Left = 76
+        Top = 111
+        Width = 221
+        Height = 30
+        Anchors = []
+        BorderStyle = bsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+      end
+      object txt_senha: TEdit
+        Left = 76
+        Top = 165
+        Width = 221
+        Height = 30
+        BorderStyle = bsNone
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        PasswordChar = '*'
+        TabOrder = 1
       end
     end
   end
