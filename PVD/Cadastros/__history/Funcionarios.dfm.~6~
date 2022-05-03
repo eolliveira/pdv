@@ -1,0 +1,36 @@
+object frm_funcionarios: Tfrm_funcionarios
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Funcionarios'
+  ClientHeight = 621
+  ClientWidth = 994
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object txt_busca_nome: TEdit
+    Left = 824
+    Top = 16
+    Width = 121
+    Height = 21
+    TabOrder = 0
+    Text = 'txt_busca_nome'
+  end
+  object txt_busca_cpf: TMaskEdit
+    Left = 824
+    Top = 64
+    Width = 120
+    Height = 21
+    EditMask = '000.000.000-00;1;_'
+    MaxLength = 14
+    TabOrder = 1
+    Text = '   .   .   -  '
+  end
+end

@@ -34,6 +34,10 @@ object frm_menu: Tfrm_menu
       object Cargos1: TMenuItem
         Caption = 'Cargos'
       end
+      object Funcionarios1: TMenuItem
+        Caption = 'Funcionarios'
+        OnClick = Funcionarios1Click
+      end
     end
     object Estoque1: TMenuItem
       Caption = 'Estoque'

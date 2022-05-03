@@ -23,7 +23,6 @@ object frm_login: Tfrm_login
     Height = 624
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 1051
     object img_fundo: TImage
       Left = 1
       Top = 1
@@ -6231,7 +6230,7 @@ object frm_login: Tfrm_login
         21B925FA0A8AAF4B26531E68AA186D2328C927115AEA6899FFD9}
       Stretch = True
       ExplicitLeft = 2
-      ExplicitTop = 0
+      ExplicitTop = 49
     end
     object pnl_login: TPanel
       Left = 320

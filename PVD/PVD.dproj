@@ -108,7 +108,10 @@
             <Form>frm_menu</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Usuarios.pas">
+        <DCCReference Include="Cadastros\Funcionarios.pas">
+            <Form>frm_funcionarios</Form>
+        </DCCReference>
+        <DCCReference Include="Cadastros\Usuarios.pas">
             <Form>frm_usuarios</Form>
             <FormType>dfm</FormType>
         </DCCReference>
