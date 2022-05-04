@@ -21,6 +21,7 @@ type
     Funcionarios1: TMenuItem;
     procedure Fornecedores2Click(Sender: TObject);
     procedure Funcionarios1Click(Sender: TObject);
+    procedure Cargos1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -34,8 +35,14 @@ implementation
 
 {$R *.dfm}
 
-uses Funcionarios, Usuarios;
+uses Funcionarios, Usuarios, Cargos;
 
+
+procedure Tfrm_menu.Cargos1Click(Sender: TObject);
+begin
+  frm_cargos := Tfrm_cargos.Create(Self);
+  frm_cargos.ShowModal;
+end;
 
 procedure Tfrm_menu.Fornecedores2Click(Sender: TObject);
 begin

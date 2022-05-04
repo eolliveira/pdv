@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.StdCtrls, Data.DB,
+  Vcl.Grids, Vcl.DBGrids;
 
 type
   Tfrm_funcionarios = class(TForm)
@@ -14,19 +15,20 @@ type
     RadioButton1: TRadioButton;
     RadioButton2: TRadioButton;
     txt_nome: TEdit;
-    txt_telefone: TEdit;
-    Edit4: TEdit;
-    ComboBox1: TComboBox;
+    txt_endereco: TEdit;
+    cb_cargo: TComboBox;
     lb_nome: TLabel;
     lb_cpf: TLabel;
     lb_telefone: TLabel;
     lb_endereco: TLabel;
     Label2: TLabel;
-    txt_cpf: TMaskEdit;
     btn_salvar: TButton;
     btn_editar: TButton;
     btn_remover: TButton;
-    Button4: TButton;
+    btn_novo: TButton;
+    txt_cpf: TMaskEdit;
+    txt_telefone: TMaskEdit;
+    DBGrid1: TDBGrid;
   private
     { Private declarations }
   public
