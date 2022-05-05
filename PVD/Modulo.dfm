@@ -1,5 +1,6 @@
 object dm: Tdm
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 661
   Width = 886
   object fd_cenecction: TFDConnection
@@ -7,36 +8,50 @@ object dm: Tdm
       'Database=pvd'
       'User_Name=root'
       'DriverID=MySQL')
-    Connected = True
-    Left = 432
-    Top = 40
+    LoginPrompt = False
+    Left = 416
+    Top = 56
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
     VendorLib = 'C:\lib\libmySQL.dll'
-    Left = 784
-    Top = 24
-  end
-  object tb_cargo: TFDTable
-    Connection = fd_cenecction
-    Left = 432
-    Top = 136
+    Left = 680
+    Top = 64
   end
   object query_cargos: TFDQuery
     Connection = fd_cenecction
     SQL.Strings = (
-      'SELECT * FROM tb_cargo')
-    Left = 432
-    Top = 216
+      'SELECT * FROM cargos')
+    Left = 416
+    Top = 240
     object query_cargosid: TFDAutoIncField
-      FieldName = 'codigo'
+      FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object query_cargoscargo: TStringField
       FieldName = 'cargo'
       Origin = 'cargo'
       Required = True
       Size = 200
+    end
+  end
+  object tb_cargos: TFDTable
+    IndexFieldNames = 'id'
+    Connection = fd_cenecction
+    TableName = 'pvd.cargos'
+    Left = 416
+    Top = 152
+    object tb_cargosid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object tb_cargoscargo: TStringField
+      FieldName = 'cargo'
+      Origin = 'cargo'
+      Required = True
+      Size = 25
     end
   end
 end

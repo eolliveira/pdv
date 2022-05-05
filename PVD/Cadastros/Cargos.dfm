@@ -43,6 +43,7 @@ object frm_cargos: Tfrm_cargos
     Caption = 'Salvar'
     Enabled = False
     TabOrder = 1
+    OnClick = btn_salvarClick
   end
   object btn_editar: TButton
     Left = 317
@@ -76,6 +77,7 @@ object frm_cargos: Tfrm_cargos
     Top = 27
     Width = 249
     Height = 21
+    Enabled = False
     TabOrder = 5
   end
 end

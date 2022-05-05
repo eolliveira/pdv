@@ -38,7 +38,6 @@ uses Menu;
 procedure Tfrm_login.btn_entrarClick(Sender: TObject);
 begin
   if Trim(txt_usuario.text) = '' then
-
   begin
     messageDlg('Insira um usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     txt_usuario.SetFocus;
