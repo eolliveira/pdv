@@ -13,8 +13,8 @@ object frm_cargos: Tfrm_cargos
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
-  OnCreate = FormCreate
+  Position = poDesigned
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object lb_nome: TLabel
@@ -35,13 +35,15 @@ object frm_cargos: Tfrm_cargos
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
-    TitleFont.Height = -11
+    TitleFont.Height = -12
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
+    OnCellClick = gd_cargosCellClick
   end
   object btn_salvar: TButton
     Left = 317

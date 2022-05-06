@@ -22,6 +22,8 @@ type
     procedure verificaCargoExistente;
     procedure listarCargos;
     procedure FormShow(Sender: TObject);
+    procedure gd_cargosCellClick(Column: TColumn);
+    procedure btn_editarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,6 +32,7 @@ type
 
 var
   frm_cargos: Tfrm_cargos;
+  id : String;
 
 implementation
 
@@ -43,11 +46,29 @@ begin
   dm.tb_cargos.FieldByName('cargo').Value := txt_nome.Text;
 end;
 
+procedure Tfrm_cargos.btn_editarClick(Sender: TObject);
+begin
+
+  id := dm.query_cargos.FieldByName('id').Value;
+
+  associaCampos;
+
+  dm.query_cargos.Close;
+  dm.query_cargos.SQL.Clear;
+  dm.query_cargos.SQL.Add('UPDATE cargos SET cargo = :cargo WHERE id = :id');
+  dm.query_cargos.ParamByName('id').Value := id;
+  dm.query_cargos.ParamByName('cargo').Value := txt_nome.Text;
+  dm.query_cargos.ExecSQL();
+
+  listarCargos
+end;
+
 procedure Tfrm_cargos.btn_novoClick(Sender: TObject);
 begin
   btn_salvar.Enabled := true;
   txt_nome.Enabled := true;
   txt_nome.Text := '';
+  btn_novo.Enabled := false;
   txt_nome.SetFocus;
 
   //abre dataSet
@@ -83,15 +104,29 @@ begin
   //confirma a inserção
   dm.tb_cargos.Post;
   messageDlg('Cargo foi cadastrado com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+  listarCargos;
   btn_salvar.Enabled := false;
   txt_nome.Enabled := false;
   txt_nome.Text := '';
-  listarCargos;
 end;
 
 procedure Tfrm_cargos.FormShow(Sender: TObject);
 begin
   listarCargos;
+end;
+
+procedure Tfrm_cargos.gd_cargosCellClick(Column: TColumn);
+begin
+  txt_nome.Enabled := true;
+  btn_editar.Enabled := true;
+  btn_salvar.Enabled := false;
+  btn_remover.Enabled := true;
+
+  dm.tb_cargos.Edit;
+
+  if dm.query_cargos.FieldByName('cargo').Value <> null then
+  txt_nome.Text := dm.query_cargos.FieldByName('cargo').Value;
+
 end;
 
 procedure Tfrm_cargos.listarCargos;

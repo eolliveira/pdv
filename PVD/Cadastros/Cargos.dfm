@@ -13,7 +13,7 @@ object frm_cargos: Tfrm_cargos
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poDesigned
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -42,6 +42,7 @@ object frm_cargos: Tfrm_cargos
     TitleFont.Height = -12
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
+    OnCellClick = gd_cargosCellClick
   end
   object btn_salvar: TButton
     Left = 317
@@ -61,6 +62,7 @@ object frm_cargos: Tfrm_cargos
     Caption = 'Editar'
     Enabled = False
     TabOrder = 2
+    OnClick = btn_editarClick
   end
   object btn_remover: TButton
     Left = 317

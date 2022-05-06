@@ -20,6 +20,9 @@ type
     procedure btn_salvarClick(Sender: TObject);
     procedure associaCampos;
     procedure verificaCargoExistente;
+    procedure listarCargos;
+    procedure FormShow(Sender: TObject);
+    procedure gd_cargosCellClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -46,6 +49,7 @@ begin
   btn_salvar.Enabled := true;
   txt_nome.Enabled := true;
   txt_nome.Text := '';
+  btn_novo.Enabled := false;
   txt_nome.SetFocus;
 
   //abre dataSet
@@ -81,13 +85,42 @@ begin
   //confirma a inserção
   dm.tb_cargos.Post;
   messageDlg('Cargo foi cadastrado com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+  listarCargos;
   btn_salvar.Enabled := false;
   txt_nome.Enabled := false;
   txt_nome.Text := '';
 end;
 
+procedure Tfrm_cargos.FormShow(Sender: TObject);
+begin
+  listarCargos;
+end;
+
+procedure Tfrm_cargos.gd_cargosCellClick(Column: TColumn);
+begin
+  txt_nome.Enabled := true;
+  btn_editar.Enabled := true;
+  btn_salvar.Enabled := false;
+  btn_remover.Enabled := true;
+
+  dm.tb_cargos.Edit;
+
+
+
+
+end;
+
+procedure Tfrm_cargos.listarCargos;
+begin
+  dm.query_cargos.Close;
+  dm.query_cargos.SQL.Clear;
+  dm.query_cargos.SQL.Add('SELECT * FROM cargos Order by cargo');
+  dm.query_cargos.Open();
+end;
+
 procedure Tfrm_cargos.verificaCargoExistente;
 begin
+  dm.query_cargos.Close;
   dm.query_cargos.SQL.Clear;
   dm.query_cargos.SQL.Add('SELECT * FROM cargos WHERE cargo = ' +  QuotedStr(Trim(txt_nome.Text)));
   dm.query_cargos.Open();
