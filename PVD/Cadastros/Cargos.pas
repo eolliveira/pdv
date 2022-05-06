@@ -9,7 +9,7 @@ uses
 
 type
   Tfrm_cargos = class(TForm)
-    DBGrid1: TDBGrid;
+    gd_cargos: TDBGrid;
     btn_salvar: TButton;
     btn_editar: TButton;
     btn_remover: TButton;
@@ -20,6 +20,8 @@ type
     procedure btn_salvarClick(Sender: TObject);
     procedure associaCampos;
     procedure verificaCargoExistente;
+    procedure listarCargos;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -84,10 +86,25 @@ begin
   btn_salvar.Enabled := false;
   txt_nome.Enabled := false;
   txt_nome.Text := '';
+  listarCargos;
+end;
+
+procedure Tfrm_cargos.FormShow(Sender: TObject);
+begin
+  listarCargos;
+end;
+
+procedure Tfrm_cargos.listarCargos;
+begin
+  dm.query_cargos.Close;
+  dm.query_cargos.SQL.Clear;
+  dm.query_cargos.SQL.Add('SELECT * FROM cargos Order by cargo');
+  dm.query_cargos.Open();
 end;
 
 procedure Tfrm_cargos.verificaCargoExistente;
 begin
+  dm.query_cargos.Close;
   dm.query_cargos.SQL.Clear;
   dm.query_cargos.SQL.Add('SELECT * FROM cargos WHERE cargo = ' +  QuotedStr(Trim(txt_nome.Text)));
   dm.query_cargos.Open();

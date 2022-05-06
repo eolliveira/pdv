@@ -20,6 +20,7 @@ type
     tb_cargos: TFDTable;
     tb_cargosid: TFDAutoIncField;
     tb_cargoscargo: TStringField;
+    ds_cargos: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
