@@ -1,7 +1,4 @@
-﻿[txt_nome]
-Coordinates=236,10,60,51
-
-[btn_remover]
+﻿[btn_remover]
 Coordinates=10,190,76,51
 
 [btn_editar]
@@ -30,5 +27,5 @@ Coordinates=299,122,84,33
 Coordinates=112,10,100,87
 
 []
-Coordinates=263,80,82,33
+Coordinates=236,10,60,51
 

@@ -23,7 +23,7 @@ object dm: Tdm
     Connection = fd_cenecction
     SQL.Strings = (
       'SELECT * FROM cargos')
-    Left = 336
+    Left = 264
     Top = 296
     object query_cargosid: TFDAutoIncField
       DisplayLabel = 'ID'
@@ -45,7 +45,7 @@ object dm: Tdm
     IndexFieldNames = 'id'
     Connection = fd_cenecction
     TableName = 'pvd.cargos'
-    Left = 336
+    Left = 264
     Top = 208
     object tb_cargosid: TFDAutoIncField
       DisplayWidth = 3
@@ -64,7 +64,7 @@ object dm: Tdm
   end
   object ds_cargos: TDataSource
     DataSet = query_cargos
-    Left = 432
-    Top = 296
+    Left = 264
+    Top = 376
   end
 end

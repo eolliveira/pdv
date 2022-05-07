@@ -24,6 +24,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure gd_cargosCellClick(Column: TColumn);
     procedure btn_editarClick(Sender: TObject);
+    procedure btn_removerClick(Sender: TObject);
+    procedure txt_nomeChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -60,6 +62,10 @@ begin
   dm.query_cargos.ParamByName('cargo').Value := txt_nome.Text;
   dm.query_cargos.ExecSQL();
 
+  txt_nome.Text := '';
+  btn_editar.Enabled := false;
+  btn_remover.Enabled := false;
+
   listarCargos
 end;
 
@@ -76,6 +82,29 @@ begin
 
   //habilita inserção na tb
   dm.tb_cargos.Insert;
+end;
+
+procedure Tfrm_cargos.btn_removerClick(Sender: TObject);
+begin
+  if txt_nome.Text = '' then
+  exit;
+
+  if MessageDlg('Deswja excluir o cargo?', mtInformation,[mbYes, mbNo], 0) = mrYes then
+  begin
+    id := dm.query_cargos.FieldByName('id').Value;
+
+    dm.query_cargos.Close;
+    dm.query_cargos.SQL.Clear;
+    dm.query_cargos.SQL.Add('DELETE FROM cargos WHERE cargos.id = :id');
+    dm.query_cargos.ParamByName('id').Value := id;
+    dm.query_cargos.ExecSQL();
+
+    txt_nome.Text := '';
+    btn_editar.Enabled := false;
+    btn_remover.Enabled := false;
+
+    listarCargos;
+  end;
 end;
 
 procedure Tfrm_cargos.btn_salvarClick(Sender: TObject);
@@ -106,6 +135,7 @@ begin
   messageDlg('Cargo foi cadastrado com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
   listarCargos;
   btn_salvar.Enabled := false;
+  btn_novo.Enabled := true;
   txt_nome.Enabled := false;
   txt_nome.Text := '';
 end;
@@ -135,6 +165,12 @@ begin
   dm.query_cargos.SQL.Clear;
   dm.query_cargos.SQL.Add('SELECT * FROM cargos Order by cargo');
   dm.query_cargos.Open();
+end;
+
+procedure Tfrm_cargos.txt_nomeChange(Sender: TObject);
+begin
+
+  txt_nome.SelStart := Length(txt_nome.Text);
 end;
 
 procedure Tfrm_cargos.verificaCargoExistente;

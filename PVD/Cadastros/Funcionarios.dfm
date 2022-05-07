@@ -13,10 +13,12 @@ object frm_funcionarios: Tfrm_funcionarios
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 632
+    Left = 651
     Top = 27
     Width = 32
     Height = 13
@@ -74,15 +76,17 @@ object frm_funcionarios: Tfrm_funcionarios
     TabOrder = 1
     Text = '   .   .   -  '
   end
-  object RadioButton1: TRadioButton
+  object rb_nome: TRadioButton
     Left = 689
     Top = 26
     Width = 48
     Height = 17
     Caption = 'Nome'
+    Checked = True
     TabOrder = 2
+    TabStop = True
   end
-  object RadioButton2: TRadioButton
+  object rb_cpf: TRadioButton
     Left = 752
     Top = 26
     Width = 41
@@ -113,7 +117,7 @@ object frm_funcionarios: Tfrm_funcionarios
   end
   object btn_salvar: TButton
     Left = 222
-    Top = 208
+    Top = 456
     Width = 91
     Height = 57
     Caption = 'Salvar'
@@ -121,7 +125,7 @@ object frm_funcionarios: Tfrm_funcionarios
   end
   object btn_editar: TButton
     Left = 381
-    Top = 208
+    Top = 456
     Width = 91
     Height = 57
     Caption = 'Editar'
@@ -129,7 +133,7 @@ object frm_funcionarios: Tfrm_funcionarios
   end
   object btn_remover: TButton
     Left = 534
-    Top = 208
+    Top = 456
     Width = 99
     Height = 57
     Caption = 'Remover'
@@ -137,7 +141,7 @@ object frm_funcionarios: Tfrm_funcionarios
   end
   object btn_novo: TButton
     Left = 64
-    Top = 208
+    Top = 456
     Width = 105
     Height = 57
     Caption = 'Novo'
@@ -165,7 +169,7 @@ object frm_funcionarios: Tfrm_funcionarios
   end
   object DBGrid1: TDBGrid
     Left = 64
-    Top = 320
+    Top = 184
     Width = 569
     Height = 225
     TabOrder = 13

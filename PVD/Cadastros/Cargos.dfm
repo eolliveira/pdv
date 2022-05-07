@@ -1,6 +1,7 @@
 object frm_cargos: Tfrm_cargos
   Left = 0
   Top = 0
+  BiDiMode = bdRightToLeftNoAlign
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cargos'
@@ -13,7 +14,8 @@ object frm_cargos: Tfrm_cargos
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
-  Position = poDesigned
+  ParentBiDiMode = False
+  Position = poMainFormCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -35,6 +37,7 @@ object frm_cargos: Tfrm_cargos
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -72,6 +75,7 @@ object frm_cargos: Tfrm_cargos
     Caption = 'Remover'
     Enabled = False
     TabOrder = 3
+    OnClick = btn_removerClick
   end
   object btn_novo: TButton
     Left = 317
@@ -85,9 +89,9 @@ object frm_cargos: Tfrm_cargos
   object txt_nome: TEdit
     Left = 8
     Top = 27
-    Width = 249
+    Width = 289
     Height = 21
-    Enabled = False
     TabOrder = 5
+    OnChange = txt_nomeChange
   end
 end

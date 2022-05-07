@@ -15,7 +15,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tfrm_login, frm_login);
-  Application.CreateForm(Tfrm_cargos, frm_cargos);
   Application.CreateForm(Tdm, dm);
   Application.Run;
 end.

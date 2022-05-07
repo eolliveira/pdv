@@ -12,8 +12,8 @@ type
     txt_busca_nome: TEdit;
     txt_busca_cpf: TMaskEdit;
     Label1: TLabel;
-    RadioButton1: TRadioButton;
-    RadioButton2: TRadioButton;
+    rb_nome: TRadioButton;
+    rb_cpf: TRadioButton;
     txt_nome: TEdit;
     txt_endereco: TEdit;
     cb_cargo: TComboBox;
@@ -29,8 +29,9 @@ type
     txt_cpf: TMaskEdit;
     txt_telefone: TMaskEdit;
     DBGrid1: TDBGrid;
+    procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    procedure carregarComboxBox;
   public
     { Public declarations }
   end;
@@ -41,5 +42,36 @@ var
 implementation
 
 {$R *.dfm}
+
+uses Modulo;
+
+{ Tfrm_funcionarios }
+
+procedure Tfrm_funcionarios.carregarComboxBox;
+begin
+  dm.tb_cargos.Open;
+  cb_cargo.Enabled := true;
+
+  //se houver registros em tb_cargos
+  if not dm.query_cargos.IsEmpty then
+  begin
+
+    //eof aponta para o ultimo registro da query
+    while not dm.query_cargos.Eof do
+    begin
+      cb_cargo.Items.Add(dm.query_cargos.FieldByName('cargo').AsString);
+      dm.query_cargos.Next;
+    end;
+  end;
+
+end;
+
+procedure Tfrm_funcionarios.FormShow(Sender: TObject);
+begin
+  carregarComboxBox;
+
+  //exibe o registro da query
+  cb_cargo.ItemIndex := 0
+end;
 
 end.
