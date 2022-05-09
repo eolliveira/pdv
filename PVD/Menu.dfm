@@ -5,7 +5,7 @@ object frm_menu: Tfrm_menu
   Caption = 'Menu'
   ClientHeight = 540
   ClientWidth = 994
-  Color = clCream
+  Color = clMedGray
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

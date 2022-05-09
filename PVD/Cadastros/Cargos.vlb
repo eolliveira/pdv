@@ -1,21 +1,9 @@
-﻿[btn_remover]
-Coordinates=10,190,76,51
-
-[btn_editar]
-Coordinates=87,122,64,51
-
-[btn_novo]
+﻿[btn_novo]
 Coordinates=10,122,60,51
 
 [gd_cargos]
 Coordinates=107,190,66,33
 Visible=True
-
-[lb_nome]
-Coordinates=200,120,56,51
-
-[btn_salvar]
-Coordinates=290,120,65,51
 
 [dm.tb_cargos]
 Coordinates=10,10,81,87
@@ -27,5 +15,5 @@ Coordinates=299,122,84,33
 Coordinates=112,10,100,87
 
 []
-Coordinates=236,10,60,51
+Coordinates=10,190,76,51
 

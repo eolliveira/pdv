@@ -14,26 +14,21 @@ type
     Label1: TLabel;
     rb_nome: TRadioButton;
     rb_cpf: TRadioButton;
-    txt_nome: TEdit;
-    txt_endereco: TEdit;
-    cb_cargo: TComboBox;
-    lb_nome: TLabel;
-    lb_cpf: TLabel;
-    lb_telefone: TLabel;
-    lb_endereco: TLabel;
-    Label2: TLabel;
-    btn_salvar: TButton;
-    btn_editar: TButton;
-    btn_remover: TButton;
     btn_novo: TButton;
-    txt_cpf: TMaskEdit;
-    txt_telefone: TMaskEdit;
     DBGrid1: TDBGrid;
+    procedure DBGrid1DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure atualizaGrid;
+    procedure btn_novoClick(Sender: TObject);
   private
-    procedure carregarComboxBox;
+    { Private declarations }
   public
-    { Public declarations }
+    id_func : string;
+    nome_func : string;
+    cpf_func : string;
+    telefone_func : string;
+    endereco_func : string;
+    cargo_func : string;
   end;
 
 var
@@ -43,35 +38,43 @@ implementation
 
 {$R *.dfm}
 
-uses Modulo;
+uses Modulo, FuncionariosEdit;
 
 { Tfrm_funcionarios }
 
-procedure Tfrm_funcionarios.carregarComboxBox;
+procedure Tfrm_funcionarios.atualizaGrid;
 begin
-  dm.tb_cargos.Open;
-  cb_cargo.Enabled := true;
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario Order by nome');
+  dm.query_funcionario.Open();
+end;
 
-  //se houver registros em tb_cargos
-  if not dm.query_cargos.IsEmpty then
-  begin
+procedure Tfrm_funcionarios.btn_novoClick(Sender: TObject);
+begin
+  nome_func := 'novo';
 
-    //eof aponta para o ultimo registro da query
-    while not dm.query_cargos.Eof do
-    begin
-      cb_cargo.Items.Add(dm.query_cargos.FieldByName('cargo').AsString);
-      dm.query_cargos.Next;
-    end;
-  end;
+  frm_funcionarios_edit := Tfrm_funcionarios_edit.Create(Self);
+  frm_funcionarios_edit.ShowModal;
+end;
 
+procedure Tfrm_funcionarios.DBGrid1DblClick(Sender: TObject);
+begin
+
+  id_func := dm.query_funcionario.FieldByName('id').Value;
+  nome_func := dm.query_funcionario.FieldByName('nome').Value;
+  cpf_func := dm.query_funcionario.FieldByName('cpf').Value;
+  telefone_func := dm.query_funcionario.FieldByName('telefone').Value;
+  endereco_func := dm.query_funcionario.FieldByName('endereco').Value;
+  cargo_func := dm.query_funcionario.FieldByName('cargo').Value;
+
+  frm_funcionarios_edit := Tfrm_funcionarios_edit.Create(Self);
+  frm_funcionarios_edit.ShowModal;
 end;
 
 procedure Tfrm_funcionarios.FormShow(Sender: TObject);
 begin
-  carregarComboxBox;
-
-  //exibe o registro da query
-  cb_cargo.ItemIndex := 0
+    atualizaGrid;
 end;
 
 end.
