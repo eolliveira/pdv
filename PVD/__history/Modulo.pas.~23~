@@ -21,8 +21,16 @@ type
     tb_cargosid: TFDAutoIncField;
     tb_cargoscargo: TStringField;
     ds_cargos: TDataSource;
+    tb_funcionario: TFDTable;
+    query_funcionario: TFDQuery;
+    ds_funcionario: TDataSource;
+    tb_funcionarioid: TFDAutoIncField;
+    tb_funcionarionome: TStringField;
+    tb_funcionariocpf: TStringField;
+    tb_funcionariotelefone: TStringField;
+    tb_funcionarioendereco: TStringField;
+    tb_funcionariocargo: TStringField;
     procedure DataModuleCreate(Sender: TObject);
-    procedure ds_cargosUpdateData(Sender: TObject);
   private
     { Private declarations }
   public
@@ -41,11 +49,6 @@ implementation
 procedure Tdm.DataModuleCreate(Sender: TObject);
 begin
   dm.fd_cenecction.Connected := true;
-end;
-
-procedure Tdm.ds_cargosUpdateData(Sender: TObject);
-begin
-  dm.tb_cargos.Refresh;
 end;
 
 end.

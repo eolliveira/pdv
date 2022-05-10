@@ -20,6 +20,12 @@ type
     procedure FormShow(Sender: TObject);
     procedure atualizaGrid;
     procedure btn_novoClick(Sender: TObject);
+    procedure txt_busca_nomeChange(Sender: TObject);
+    procedure buscaPorNome;
+    procedure buscaPorCpf;
+    procedure rb_nomeClick(Sender: TObject);
+    procedure rb_cpfClick(Sender: TObject);
+    procedure txt_busca_cpfChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,20 +48,30 @@ uses Modulo, FuncionariosEdit;
 
 { Tfrm_funcionarios }
 
-procedure Tfrm_funcionarios.atualizaGrid;
-begin
-  dm.query_funcionario.Close;
-  dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario Order by nome');
-  dm.query_funcionario.Open();
-end;
-
 procedure Tfrm_funcionarios.btn_novoClick(Sender: TObject);
 begin
   nome_func := 'novo';
 
   frm_funcionarios_edit := Tfrm_funcionarios_edit.Create(Self);
   frm_funcionarios_edit.ShowModal;
+end;
+
+procedure Tfrm_funcionarios.buscaPorCpf;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf :cpf');
+  dm.query_funcionario.ParamByName('cpf').Value := txt_busca_cpf.Text;
+  dm.query_funcionario.Open();
+end;
+
+procedure Tfrm_funcionarios.buscaPorNome;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE nome LIKE :nome');
+  dm.query_funcionario.ParamByName('nome').Value := txt_busca_nome.Text + '%';
+  dm.query_funcionario.Open();
 end;
 
 procedure Tfrm_funcionarios.DBGrid1DblClick(Sender: TObject);
@@ -75,6 +91,39 @@ end;
 procedure Tfrm_funcionarios.FormShow(Sender: TObject);
 begin
     atualizaGrid;
+
+    //checkBox
+
+end;
+
+procedure Tfrm_funcionarios.rb_cpfClick(Sender: TObject);
+begin
+  txt_busca_nome.Visible := false;
+  txt_busca_cpf.Visible := true;
+end;
+
+procedure Tfrm_funcionarios.rb_nomeClick(Sender: TObject);
+begin
+  txt_busca_cpf.Visible := false;
+  txt_busca_nome.Visible := true;
+end;
+
+procedure Tfrm_funcionarios.txt_busca_cpfChange(Sender: TObject);
+begin
+  buscaPorCpf;
+end;
+
+procedure Tfrm_funcionarios.txt_busca_nomeChange(Sender: TObject);
+begin
+  buscaPorNome
+end;
+
+procedure Tfrm_funcionarios.atualizaGrid;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario Order by nome');
+  dm.query_funcionario.Open();
 end;
 
 end.

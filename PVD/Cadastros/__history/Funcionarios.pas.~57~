@@ -100,26 +100,22 @@ procedure Tfrm_funcionarios.rb_cpfClick(Sender: TObject);
 begin
   txt_busca_nome.Visible := false;
   txt_busca_cpf.Visible := true;
-  buscaPorCpf;
 end;
 
 procedure Tfrm_funcionarios.rb_nomeClick(Sender: TObject);
 begin
   txt_busca_cpf.Visible := false;
   txt_busca_nome.Visible := true;
-  atualizaGrid;
 end;
 
 procedure Tfrm_funcionarios.txt_busca_cpfChange(Sender: TObject);
 begin
-  if txt_busca_cpf.Text <> '___.___.___-__' then
+  if txt_busca_cpf.Text = '' then
   begin
-    buscaPorCpf;
+    atualizaGrid;
   end
   else
-    begin
-      atualizaGrid;
-    end;
+  buscaPorCpf;
 end;
 
 procedure Tfrm_funcionarios.txt_busca_nomeChange(Sender: TObject);

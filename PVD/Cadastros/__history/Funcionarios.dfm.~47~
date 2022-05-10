@@ -14,34 +14,37 @@ object frm_funcionarios: Tfrm_funcionarios
   Font.Style = []
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 64
+    Left = 72
     Top = 35
-    Width = 32
+    Width = 36
     Height = 13
-    Caption = 'Buscar'
+    Caption = 'Buscar:'
   end
   object txt_busca_nome: TEdit
-    Left = 212
+    Left = 228
     Top = 32
     Width = 121
     Height = 21
     TabOrder = 0
+    OnChange = txt_busca_nomeChange
   end
   object txt_busca_cpf: TMaskEdit
-    Left = 212
-    Top = 59
+    Left = 228
+    Top = 32
     Width = 120
     Height = 21
     EditMask = '000.000.000-00;1;_'
     MaxLength = 14
     TabOrder = 1
     Text = '   .   .   -  '
+    OnChange = txt_busca_cpfChange
   end
   object rb_nome: TRadioButton
-    Left = 102
+    Left = 127
     Top = 34
     Width = 48
     Height = 17
@@ -49,14 +52,16 @@ object frm_funcionarios: Tfrm_funcionarios
     Checked = True
     TabOrder = 2
     TabStop = True
+    OnClick = rb_nomeClick
   end
   object rb_cpf: TRadioButton
-    Left = 165
+    Left = 181
     Top = 34
     Width = 41
     Height = 17
     Caption = 'CPF'
     TabOrder = 3
+    OnClick = rb_cpfClick
   end
   object btn_novo: TButton
     Left = 64
@@ -65,6 +70,7 @@ object frm_funcionarios: Tfrm_funcionarios
     Height = 57
     Caption = 'Novo'
     TabOrder = 4
+    OnClick = btn_novoClick
   end
   object DBGrid1: TDBGrid
     Left = 64
@@ -72,12 +78,20 @@ object frm_funcionarios: Tfrm_funcionarios
     Width = 817
     Height = 377
     DataSource = dm.ds_funcionario
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ParentFont = False
     TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
-    TitleFont.Height = -11
+    TitleFont.Height = -13
     TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
+    TitleFont.Style = [fsBold]
+    OnDblClick = DBGrid1DblClick
     Columns = <
       item
         Expanded = False
@@ -88,31 +102,31 @@ object frm_funcionarios: Tfrm_funcionarios
       item
         Expanded = False
         FieldName = 'nome'
-        Width = 300
+        Width = 180
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cpf'
-        Width = 150
+        Width = 130
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'telefone'
-        Width = 150
+        Width = 130
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'endereco'
-        Width = 600
+        Width = 166
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cargo'
-        Width = 300
+        Width = 160
         Visible = True
       end>
   end

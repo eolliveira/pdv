@@ -30,6 +30,7 @@ object frm_funcionarios: Tfrm_funcionarios
     Width = 121
     Height = 21
     TabOrder = 0
+    OnChange = txt_busca_nomeChange
   end
   object txt_busca_cpf: TMaskEdit
     Left = 212
@@ -66,6 +67,7 @@ object frm_funcionarios: Tfrm_funcionarios
     Height = 57
     Caption = 'Novo'
     TabOrder = 4
+    OnClick = btn_novoClick
   end
   object DBGrid1: TDBGrid
     Left = 64
@@ -73,12 +75,19 @@ object frm_funcionarios: Tfrm_funcionarios
     Width = 817
     Height = 377
     DataSource = dm.ds_funcionario
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ParentFont = False
     TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
-    TitleFont.Height = -11
+    TitleFont.Height = -13
     TitleFont.Name = 'Tahoma'
-    TitleFont.Style = []
+    TitleFont.Style = [fsBold]
     OnDblClick = DBGrid1DblClick
     Columns = <
       item

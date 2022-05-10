@@ -18,21 +18,22 @@ object frm_funcionarios: Tfrm_funcionarios
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 64
+    Left = 72
     Top = 35
-    Width = 32
+    Width = 36
     Height = 13
-    Caption = 'Buscar'
+    Caption = 'Buscar:'
   end
   object txt_busca_nome: TEdit
-    Left = 212
+    Left = 228
     Top = 32
     Width = 121
     Height = 21
     TabOrder = 0
+    OnChange = txt_busca_nomeChange
   end
   object txt_busca_cpf: TMaskEdit
-    Left = 212
+    Left = 276
     Top = 59
     Width = 120
     Height = 21
@@ -40,9 +41,11 @@ object frm_funcionarios: Tfrm_funcionarios
     MaxLength = 14
     TabOrder = 1
     Text = '   .   .   -  '
+    Visible = False
+    OnChange = txt_busca_cpfChange
   end
   object rb_nome: TRadioButton
-    Left = 102
+    Left = 127
     Top = 34
     Width = 48
     Height = 17
@@ -50,14 +53,16 @@ object frm_funcionarios: Tfrm_funcionarios
     Checked = True
     TabOrder = 2
     TabStop = True
+    OnClick = rb_nomeClick
   end
   object rb_cpf: TRadioButton
-    Left = 165
+    Left = 181
     Top = 34
     Width = 41
     Height = 17
     Caption = 'CPF'
     TabOrder = 3
+    OnClick = rb_cpfClick
   end
   object btn_novo: TButton
     Left = 64

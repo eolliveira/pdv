@@ -8,18 +8,16 @@ object dm: Tdm
       'Database=pvd'
       'User_Name=root'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
     Left = 152
     Top = 112
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    VendorLib = 'C:\lib\libmySQL.dll'
+    VendorLib = 'C:\lib\libmysql.dll'
     Left = 752
     Top = 48
   end
   object query_cargos: TFDQuery
-    Active = True
     Connection = fd_cenecction
     SQL.Strings = (
       'SELECT * FROM cargos')
@@ -41,7 +39,6 @@ object dm: Tdm
     end
   end
   object tb_cargos: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = fd_cenecction
     TableName = 'pvd.cargos'
@@ -77,6 +74,7 @@ object dm: Tdm
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object tb_funcionarionome: TStringField
       FieldName = 'nome'
@@ -110,7 +108,6 @@ object dm: Tdm
     end
   end
   object query_funcionario: TFDQuery
-    Active = True
     Connection = fd_cenecction
     SQL.Strings = (
       'SELECT * FROM tb_funcionario')

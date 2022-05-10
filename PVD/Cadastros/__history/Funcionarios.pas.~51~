@@ -60,8 +60,8 @@ procedure Tfrm_funcionarios.buscaPorCpf;
 begin
   dm.query_funcionario.Close;
   dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf = :cpf');
-  dm.query_funcionario.ParamByName('cpf').Value := txt_busca_cpf.Text;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf :cpf');
+  dm.query_funcionario.ParamByName('cpf').Value := txt_busca_cpf.Text + '%';
   dm.query_funcionario.Open();
 end;
 
@@ -107,23 +107,16 @@ procedure Tfrm_funcionarios.rb_nomeClick(Sender: TObject);
 begin
   txt_busca_cpf.Visible := false;
   txt_busca_nome.Visible := true;
-  atualizaGrid;
 end;
 
 procedure Tfrm_funcionarios.txt_busca_cpfChange(Sender: TObject);
 begin
-  if txt_busca_cpf.Text <> '___.___.___-__' then
-  begin
-    buscaPorCpf;
-  end
-  else
-    begin
-      atualizaGrid;
-    end;
+  buscaPorCpf;
 end;
 
 procedure Tfrm_funcionarios.txt_busca_nomeChange(Sender: TObject);
 begin
+
   buscaPorNome
 end;
 

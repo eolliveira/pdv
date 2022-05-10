@@ -8,22 +8,20 @@ object dm: Tdm
       'Database=pvd'
       'User_Name=root'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
-    Left = 336
+    Left = 152
     Top = 112
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    VendorLib = 'C:\lib\libmySQL.dll'
+    VendorLib = 'C:\lib\libmysql.dll'
     Left = 752
     Top = 48
   end
   object query_cargos: TFDQuery
-    Active = True
     Connection = fd_cenecction
     SQL.Strings = (
       'SELECT * FROM cargos')
-    Left = 256
+    Left = 72
     Top = 368
     object query_cargosid: TFDAutoIncField
       DisplayLabel = 'ID'
@@ -41,11 +39,10 @@ object dm: Tdm
     end
   end
   object tb_cargos: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = fd_cenecction
     TableName = 'pvd.cargos'
-    Left = 264
+    Left = 80
     Top = 208
     object tb_cargosid: TFDAutoIncField
       DisplayWidth = 3
@@ -64,19 +61,20 @@ object dm: Tdm
   end
   object ds_cargos: TDataSource
     DataSet = query_cargos
-    Left = 256
+    Left = 72
     Top = 288
   end
   object tb_funcionario: TFDTable
     IndexFieldNames = 'id'
     Connection = fd_cenecction
     TableName = 'pvd.tb_funcionario'
-    Left = 400
+    Left = 216
     Top = 208
     object tb_funcionarioid: TFDAutoIncField
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object tb_funcionarionome: TStringField
       FieldName = 'nome'
@@ -110,16 +108,15 @@ object dm: Tdm
     end
   end
   object query_funcionario: TFDQuery
-    Active = True
     Connection = fd_cenecction
     SQL.Strings = (
       'SELECT * FROM tb_funcionario')
-    Left = 408
+    Left = 224
     Top = 368
   end
   object ds_funcionario: TDataSource
     DataSet = query_funcionario
-    Left = 400
+    Left = 216
     Top = 288
   end
 end
