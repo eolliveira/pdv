@@ -30,6 +30,7 @@ type
     procedure preencheCampos;
     procedure btn_cancelarClick(Sender: TObject);
     procedure btn_removerClick(Sender: TObject);
+    procedure verificaFuncionarioExistente;
   private
     id_func : string;
     nome_func : string;
@@ -102,15 +103,16 @@ begin
     end;
 
     {
-    verificaCargoExistente;
+    verificaFuncionarioExistente;
 
-    if not dm.query_cargos.IsEmpty then
+    if not dm.query_funcionario.IsEmpty then
     begin
-      messageDlg('Cargo ja existente! Por favor insira outro nome', TMsgDlgType.mtInformation, mbOKCancel, 0);
-      txt_cargo.SetFocus;
+      messageDlg('Nome inforado ja pertence a um Funcionário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      txt_cpf.SetFocus;
       Exit
     end;
-     }
+
+    }
 
 
     //associa campo do BD, ao campo do formulario
@@ -124,6 +126,7 @@ begin
     Close;
   end
   else
+  //modo de edição
   begin
     if Trim(txt_nome.text) = '' then
     begin
@@ -132,18 +135,14 @@ begin
       Exit
     end;
 
-    //verificaCargoExistente;
+    verificaFuncionarioExistente;
 
-    {
-
-    if not dm.query_cargos.IsEmpty then
+    if not dm.query_funcionario.IsEmpty then
     begin
-      messageDlg('Cargo ja existente! Por favor insira outro nome', TMsgDlgType.mtInformation, mbOKCancel, 0);
-      txt_cargo.SetFocus;
+      messageDlg('Nome informado ja pertence a outra pessoa!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      txt_cpf.SetFocus;
       Exit
     end;
-
-     }
 
     //associa campo do BD, ao campo do formulario
     dm.tb_funcionario.FieldByName('nome').Value := txt_nome.Text;
@@ -154,7 +153,7 @@ begin
 
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco =:endereco, cargo = :cargo WHERE id = :id');
+    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo = :cargo WHERE id = :id');
     dm.query_cargos.ParamByName('id').Value := id_func;
     dm.query_cargos.ParamByName('nome').Value := txt_nome.Text;
     dm.query_cargos.ParamByName('cpf').Value := txt_cpf.Text;
@@ -175,7 +174,7 @@ begin
 
   dm.query_cargos.Close;
   dm.query_cargos.SQL.Clear;
-  dm.query_cargos.SQL.Add('SELECT cargo FROM cargos ORDER BY cargo');
+  dm.query_cargos.SQL.Add('SELECT * FROM cargos ORDER BY cargo');
   dm.query_cargos.Open;
 
   //se houver registros em tb_cargos
@@ -189,7 +188,7 @@ begin
       dm.query_cargos.Next;
     end;
 
-    //exibe o registro da query
+    //exibe no ComboBox o primeiro registro da query
     cb_cargo.ItemIndex := 0;
   end;
 end;
@@ -245,6 +244,14 @@ begin
   txt_cpf.Text := cpf_func;
   txt_telefone.Text := telefone_func;
   cb_cargo.Text := cargo_func;
+end;
+
+procedure Tfrm_funcionarios_edit.verificaFuncionarioExistente;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE nome = ' + txt_nome.Text);
+  dm.query_funcionario.Open;
 end;
 
 end.

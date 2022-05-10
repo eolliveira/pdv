@@ -102,14 +102,18 @@ begin
       Exit
     end;
 
+    {
     verificaFuncionarioExistente;
 
     if not dm.query_funcionario.IsEmpty then
     begin
-      messageDlg('CPF informado ja pertence a outra pessoa!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      messageDlg('Nome inforado ja pertence a um Funcionário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
       txt_cpf.SetFocus;
       Exit
     end;
+
+    }
+
 
     //associa campo do BD, ao campo do formulario
     dm.tb_funcionario.FieldByName('nome').Value := txt_nome.Text;
@@ -135,7 +139,7 @@ begin
 
     if not dm.query_funcionario.IsEmpty then
     begin
-      messageDlg('CPF informado ja pertence a outra pessoa!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      messageDlg('Nome informado ja pertence a outra pessoa!', TMsgDlgType.mtInformation, mbOKCancel, 0);
       txt_cpf.SetFocus;
       Exit
     end;
@@ -149,7 +153,7 @@ begin
 
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco =:endereco, cargo = :cargo WHERE id = :id');
+    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo = :cargo WHERE id = :id');
     dm.query_cargos.ParamByName('id').Value := id_func;
     dm.query_cargos.ParamByName('nome').Value := txt_nome.Text;
     dm.query_cargos.ParamByName('cpf').Value := txt_cpf.Text;
@@ -246,7 +250,8 @@ procedure Tfrm_funcionarios_edit.verificaFuncionarioExistente;
 begin
   dm.query_funcionario.Close;
   dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf = ' + txt_cpf.Text);
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE nome = :nome');
+  dm.query_funcionario.ParamByName('nome').Value := txt_nome.Text;
   dm.query_funcionario.Open;
 end;
 

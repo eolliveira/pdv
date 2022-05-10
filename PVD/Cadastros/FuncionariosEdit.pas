@@ -38,6 +38,7 @@ type
     telefone_func : string;
     endereco_func : string;
     cargo_func : string;
+    cpf_antigo : string;
   public
     { Public declarations }
   end;
@@ -71,6 +72,8 @@ begin
   cb_cargo.Enabled := true;
 
   dm.tb_funcionario.Edit;
+
+  cpf_antigo := txt_cpf.Text;
 end;
 
 procedure Tfrm_funcionarios_edit.btn_removerClick(Sender: TObject);
@@ -102,18 +105,8 @@ begin
       Exit
     end;
 
-    {
+    //CPF
     verificaFuncionarioExistente;
-
-    if not dm.query_funcionario.IsEmpty then
-    begin
-      messageDlg('Nome inforado ja pertence a um Funcionário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
-      txt_cpf.SetFocus;
-      Exit
-    end;
-
-    }
-
 
     //associa campo do BD, ao campo do formulario
     dm.tb_funcionario.FieldByName('nome').Value := txt_nome.Text;
@@ -128,6 +121,7 @@ begin
   else
   //modo de edição
   begin
+
     if Trim(txt_nome.text) = '' then
     begin
       messageDlg('Informe um nome para o Funcionário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
@@ -135,13 +129,9 @@ begin
       Exit
     end;
 
-    verificaFuncionarioExistente;
-
-    if not dm.query_funcionario.IsEmpty then
+    if cpf_antigo <> txt_cpf.Text then
     begin
-      messageDlg('CPF informado ja pertence a outra pessoa!', TMsgDlgType.mtInformation, mbOKCancel, 0);
-      txt_cpf.SetFocus;
-      Exit
+      verificaFuncionarioExistente;
     end;
 
     //associa campo do BD, ao campo do formulario
@@ -153,7 +143,7 @@ begin
 
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco =:endereco, cargo = :cargo WHERE id = :id');
+    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo = :cargo WHERE id = :id');
     dm.query_cargos.ParamByName('id').Value := id_func;
     dm.query_cargos.ParamByName('nome').Value := txt_nome.Text;
     dm.query_cargos.ParamByName('cpf').Value := txt_cpf.Text;
@@ -230,6 +220,7 @@ begin
     nome_func := frm_funcionarios.nome_func;
     cpf_func := frm_funcionarios.cpf_func;
     telefone_func := frm_funcionarios.telefone_func;
+    endereco_func := frm_funcionarios.endereco_func;
     cargo_func := frm_funcionarios.cargo_func;
 
     preencheCampos;
@@ -240,7 +231,7 @@ end;
 procedure Tfrm_funcionarios_edit.preencheCampos;
 begin
   txt_nome.Text := nome_func;
-  txt_endereco.Text := telefone_func;
+  txt_endereco.Text := endereco_func;
   txt_cpf.Text := cpf_func;
   txt_telefone.Text := telefone_func;
   cb_cargo.Text := cargo_func;
@@ -250,8 +241,16 @@ procedure Tfrm_funcionarios_edit.verificaFuncionarioExistente;
 begin
   dm.query_funcionario.Close;
   dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM `tb_funcionario` WHERE nome = ' + txt_nome.Text);
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf = :cpf');
+  dm.query_funcionario.ParamByName('cpf').Value := txt_cpf.Text;
   dm.query_funcionario.Open;
+
+  if not dm.query_funcionario.IsEmpty then
+  begin
+    messageDlg('CPF informado ja pertence a outra pessoa!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+    txt_cpf.SetFocus;
+    Exit
+  end;
 end;
 
 end.
