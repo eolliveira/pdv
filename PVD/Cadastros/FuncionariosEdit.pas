@@ -31,6 +31,8 @@ type
     procedure btn_cancelarClick(Sender: TObject);
     procedure btn_removerClick(Sender: TObject);
     procedure verificaFuncionarioExistente;
+    procedure habilitaCamposEdicao;
+    procedure associaCampos;
   private
     id_func : string;
     nome_func : string;
@@ -52,6 +54,16 @@ implementation
 
 uses Modulo, Funcionarios;
 
+procedure Tfrm_funcionarios_edit.associaCampos;
+begin
+  //associa campos do BD, ao campo do formulario
+  dm.tb_funcionario.FieldByName('nome').Value := txt_nome.Text;
+  dm.tb_funcionario.FieldByName('cpf').Value := txt_cpf.Text;
+  dm.tb_funcionario.FieldByName('telefone').Value := txt_telefone.Text;
+  dm.tb_funcionario.FieldByName('endereco').Value := txt_endereco.Text;
+  dm.tb_funcionario.FieldByName('cargo').Value := cb_cargo.Text;
+end;
+
 procedure Tfrm_funcionarios_edit.btn_cancelarClick(Sender: TObject);
 begin
   dm.query_funcionario.Close;
@@ -60,35 +72,24 @@ end;
 
 procedure Tfrm_funcionarios_edit.btn_editarClick(Sender: TObject);
 begin
-  btn_salvar.Enabled := true;
-  btn_editar.Enabled := false;
-  btn_remover.Enabled := false;
-  btn_cancelar.Enabled := true;
-
-  txt_nome.Enabled := true;
-  txt_cpf.Enabled := true;
-  txt_telefone.Enabled := true;
-  txt_endereco.Enabled := true;
-  cb_cargo.Enabled := true;
-
+  habilitaCamposEdicao;
   dm.tb_funcionario.Edit;
-
   cpf_antigo := txt_cpf.Text;
 end;
 
 procedure Tfrm_funcionarios_edit.btn_removerClick(Sender: TObject);
 begin
    if MessageDlg('Deseja excluir o Funcionário?', mtInformation,[mbYes, mbNo], 0) = mrYes then
-  begin
-    dm.query_funcionario.Close;
-    dm.query_funcionario.SQL.Clear;
-    dm.query_funcionario.SQL.Add('DELETE FROM tb_funcionario WHERE tb_funcionario.id = :id');
-    dm.query_funcionario.ParamByName('id').Value := id_func;
-    dm.query_funcionario.ExecSQL();
+    begin
+      dm.query_funcionario.Close;
+      dm.query_funcionario.SQL.Clear;
+      dm.query_funcionario.SQL.Add('DELETE FROM tb_funcionario WHERE tb_funcionario.id = :id');
+      dm.query_funcionario.ParamByName('id').Value := id_func;
+      dm.query_funcionario.ExecSQL();
 
-    messageDlg('Funcionário foi removido com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
-    Close;
-  end;
+      messageDlg('Funcionário foi removido com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      Close;
+    end;
 end;
 
 procedure Tfrm_funcionarios_edit.btn_salvarClick(Sender: TObject);
@@ -108,12 +109,7 @@ begin
     //CPF
     verificaFuncionarioExistente;
 
-    //associa campo do BD, ao campo do formulario
-    dm.tb_funcionario.FieldByName('nome').Value := txt_nome.Text;
-    dm.tb_funcionario.FieldByName('cpf').Value := txt_cpf.Text;
-    dm.tb_funcionario.FieldByName('telefone').Value := txt_telefone.Text;
-    dm.tb_funcionario.FieldByName('endereco').Value := txt_endereco.Text;
-    dm.tb_funcionario.FieldByName('cargo').Value := cb_cargo.Text;
+    associaCampos;
     dm.tb_funcionario.Post;
     messageDlg('Funcionário foi cadastrado com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     Close;
@@ -131,15 +127,21 @@ begin
 
     if cpf_antigo <> txt_cpf.Text then
     begin
-      verificaFuncionarioExistente;
+      dm.query_funcionario.Close;
+      dm.query_funcionario.SQL.Clear;
+      dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf = :cpf');
+      dm.query_funcionario.ParamByName('cpf').Value := txt_cpf.Text;
+      dm.query_funcionario.Open;
+
+      if not dm.query_funcionario.IsEmpty then
+      begin
+        messageDlg('CPF informado ja pertence a outra pessoa!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+        txt_cpf.SetFocus;
+        exit
+      end;
     end;
 
-    //associa campo do BD, ao campo do formulario
-    dm.tb_funcionario.FieldByName('nome').Value := txt_nome.Text;
-    dm.tb_funcionario.FieldByName('cpf').Value := txt_cpf.Text;
-    dm.tb_funcionario.FieldByName('telefone').Value := txt_telefone.Text;
-    dm.tb_funcionario.FieldByName('endereco').Value := txt_endereco.Text;
-    dm.tb_funcionario.FieldByName('cargo').Value := cb_cargo.Text;
+    associaCampos;
 
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
@@ -228,6 +230,20 @@ begin
 
 end;
 
+procedure Tfrm_funcionarios_edit.habilitaCamposEdicao;
+begin
+  btn_salvar.Enabled := true;
+  btn_editar.Enabled := false;
+  btn_remover.Enabled := false;
+  btn_cancelar.Enabled := true;
+
+  txt_nome.Enabled := true;
+  txt_cpf.Enabled := true;
+  txt_telefone.Enabled := true;
+  txt_endereco.Enabled := true;
+  cb_cargo.Enabled := true;
+end;
+
 procedure Tfrm_funcionarios_edit.preencheCampos;
 begin
   txt_nome.Text := nome_func;
@@ -249,8 +265,7 @@ begin
   begin
     messageDlg('CPF informado ja pertence a outra pessoa!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     txt_cpf.SetFocus;
-    Exit
+    exit
   end;
 end;
-
 end.

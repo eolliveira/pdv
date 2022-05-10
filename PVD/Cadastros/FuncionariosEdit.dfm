@@ -65,7 +65,7 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
     Width = 302
     Height = 21
     Enabled = False
-    TabOrder = 1
+    TabOrder = 3
   end
   object cb_cargo: TComboBox
     Left = 448
@@ -73,7 +73,7 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
     Width = 142
     Height = 21
     Enabled = False
-    TabOrder = 2
+    TabOrder = 4
   end
   object txt_cpf: TMaskEdit
     Left = 296
@@ -83,7 +83,7 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
     Enabled = False
     EditMask = '000.000.000-00;1;_'
     MaxLength = 14
-    TabOrder = 3
+    TabOrder = 1
     Text = '   .   .   -  '
   end
   object txt_telefone: TMaskEdit
@@ -94,7 +94,7 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
     Enabled = False
     EditMask = '!\(99\)00000-0000;1;_'
     MaxLength = 14
-    TabOrder = 4
+    TabOrder = 2
     Text = '(  )     -    '
   end
   object btn_salvar: TButton
@@ -126,7 +126,7 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
     OnClick = btn_removerClick
   end
   object btn_cancelar: TButton
-    Left = 378
+    Left = 386
     Top = 184
     Width = 91
     Height = 57

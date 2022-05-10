@@ -42,14 +42,6 @@ uses Modulo, FuncionariosEdit;
 
 { Tfrm_funcionarios }
 
-procedure Tfrm_funcionarios.atualizaGrid;
-begin
-  dm.query_funcionario.Close;
-  dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario Order by nome');
-  dm.query_funcionario.Open();
-end;
-
 procedure Tfrm_funcionarios.btn_novoClick(Sender: TObject);
 begin
   nome_func := 'novo';
@@ -75,6 +67,14 @@ end;
 procedure Tfrm_funcionarios.FormShow(Sender: TObject);
 begin
     atualizaGrid;
+end;
+
+procedure Tfrm_funcionarios.atualizaGrid;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario Order by nome');
+  dm.query_funcionario.Open();
 end;
 
 end.
