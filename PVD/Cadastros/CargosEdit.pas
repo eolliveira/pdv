@@ -51,7 +51,7 @@ begin
   btn_cancelar.Enabled := true;
   txt_cargo.Enabled := true;
 
-  dm.tb_cargos.Edit;
+  dm.tb_cargo.Edit;
 end;
 
 procedure Tfrm_cargos_edit.btn_removerClick(Sender: TObject);
@@ -61,7 +61,7 @@ begin
   begin
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('DELETE FROM cargos WHERE cargos.id = :id');
+    dm.query_cargos.SQL.Add('DELETE FROM tb_cargo WHERE tb_cargo.id = :id');
     dm.query_cargos.ParamByName('id').Value := id_cargo;
     dm.query_cargos.ExecSQL();
 
@@ -94,8 +94,8 @@ begin
     end;
 
     //associa campo do BD, ao campo do formulario
-    dm.tb_cargos.FieldByName('cargo').Value := txt_cargo.Text;
-    dm.tb_cargos.Post;
+    dm.tb_cargo.FieldByName('cargo').Value := txt_cargo.Text;
+    dm.tb_cargo.Post;
     messageDlg('Cargo cadastrado com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     Close;
   end
@@ -119,11 +119,11 @@ begin
     end;
 
     //associa campo do BD, ao campo do formulario
-    dm.tb_cargos.FieldByName('cargo').Value := txt_cargo.Text;
+    dm.tb_cargo.FieldByName('cargo').Value := txt_cargo.Text;
 
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('UPDATE cargos SET cargo = :cargo WHERE id = :id');
+    dm.query_cargos.SQL.Add('UPDATE tb_cargo SET cargo = :cargo WHERE id = :id');
     dm.query_cargos.ParamByName('id').Value := id_cargo;
     dm.query_cargos.ParamByName('cargo').Value := txt_cargo.Text;
     dm.query_cargos.ExecSQL();
@@ -148,8 +148,8 @@ begin
     btn_editar.Enabled := false;
     btn_remover.Enabled := false;
     txt_cargo.Enabled := true;
-    dm.tb_cargos.Active := true;
-    dm.tb_cargos.Insert;
+    dm.tb_cargo.Active := true;
+    dm.tb_cargo.Insert;
   end
   else
   begin
@@ -166,7 +166,7 @@ procedure Tfrm_cargos_edit.verificaCargoExistente;
 begin
   dm.query_cargos.Close;
   dm.query_cargos.SQL.Clear;
-  dm.query_cargos.SQL.Add('SELECT * FROM cargos WHERE cargo = ' + QuotedStr(Trim(txt_cargo.Text)));
+  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE cargo = ' + QuotedStr(Trim(txt_cargo.Text)));
   dm.query_cargos.Open();
 end;
 

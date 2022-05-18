@@ -30,7 +30,7 @@ object frm_cargos_edit: Tfrm_cargos_edit
     ParentFont = False
   end
   object btn_salvar: TButton
-    Left = 125
+    Left = 132
     Top = 82
     Width = 91
     Height = 57

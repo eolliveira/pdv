@@ -58,7 +58,7 @@ procedure Tfrm_cargos.listarCargos;
   begin
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('SELECT * FROM cargos Order by cargo');
+    dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo Order by cargo');
     dm.query_cargos.Open();
   end;
 

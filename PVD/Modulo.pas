@@ -17,9 +17,9 @@ type
     query_cargos: TFDQuery;
     query_cargosid: TFDAutoIncField;
     query_cargoscargo: TStringField;
-    tb_cargos: TFDTable;
-    tb_cargosid: TFDAutoIncField;
-    tb_cargoscargo: TStringField;
+    tb_cargo: TFDTable;
+    tb_cargoid: TFDAutoIncField;
+    tb_cargocargo: TStringField;
     ds_cargos: TDataSource;
     tb_funcionario: TFDTable;
     query_funcionario: TFDQuery;
@@ -29,7 +29,8 @@ type
     tb_funcionariocpf: TStringField;
     tb_funcionariotelefone: TStringField;
     tb_funcionarioendereco: TStringField;
-    tb_funcionariocargo: TStringField;
+    tb_funcionariocargo_id: TIntegerField;
+    query_funcionario_cargo: TFDQuery;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

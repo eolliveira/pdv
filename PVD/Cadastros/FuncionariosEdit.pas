@@ -22,6 +22,7 @@ type
     btn_editar: TButton;
     btn_remover: TButton;
     btn_cancelar: TButton;
+    txt_cargo_id: TEdit;
     procedure carregaComboBox;
     procedure FormShow(Sender: TObject);
     procedure btn_editarClick(Sender: TObject);
@@ -33,6 +34,7 @@ type
     procedure verificaFuncionarioExistente;
     procedure habilitaCamposEdicao;
     procedure associaCampos;
+    procedure cb_cargoChange(Sender: TObject);
   private
     id_func : string;
     nome_func : string;
@@ -61,7 +63,8 @@ begin
   dm.tb_funcionario.FieldByName('cpf').Value := txt_cpf.Text;
   dm.tb_funcionario.FieldByName('telefone').Value := txt_telefone.Text;
   dm.tb_funcionario.FieldByName('endereco').Value := txt_endereco.Text;
-  dm.tb_funcionario.FieldByName('cargo').Value := cb_cargo.Text;
+  /////8888888888888888888888888888888888
+  dm.tb_funcionario.FieldByName('cargo_id').Value := cb_cargo.Text;
 end;
 
 procedure Tfrm_funcionarios_edit.btn_cancelarClick(Sender: TObject);
@@ -166,7 +169,7 @@ begin
 
   dm.query_cargos.Close;
   dm.query_cargos.SQL.Clear;
-  dm.query_cargos.SQL.Add('SELECT * FROM cargos ORDER BY cargo');
+  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo ORDER BY cargo');
   dm.query_cargos.Open;
 
   //se houver registros em tb_cargos
@@ -177,12 +180,22 @@ begin
     while not dm.query_cargos.Eof do
     begin
       cb_cargo.Items.Add(dm.query_cargos.FieldByName('cargo').AsString);
+      txt_cargo_id.Text := dm.query_cargos.FieldByName('id').AsString;
       dm.query_cargos.Next;
     end;
 
     //exibe no ComboBox o primeiro registro da query
     cb_cargo.ItemIndex := 0;
   end;
+end;
+
+procedure Tfrm_funcionarios_edit.cb_cargoChange(Sender: TObject);
+begin
+  dm.query_cargos.Close;
+  dm.query_cargos.SQL.Clear;
+  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE tb.cargo.cargo = :cargo');
+  dm.query_cargos.Open;
+
 end;
 
 procedure Tfrm_funcionarios_edit.FormClose(Sender: TObject;

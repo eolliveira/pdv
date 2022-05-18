@@ -50,11 +50,6 @@ object frm_cargos: Tfrm_cargos
       item
         Expanded = False
         FieldName = 'cargo'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
         Width = 232
         Visible = True
       end>

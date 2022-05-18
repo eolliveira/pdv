@@ -33,8 +33,8 @@ object frm_funcionarios: Tfrm_funcionarios
     OnChange = txt_busca_nomeChange
   end
   object txt_busca_cpf: TMaskEdit
-    Left = 276
-    Top = 59
+    Left = 228
+    Top = 32
     Width = 120
     Height = 21
     EditMask = '000.000.000-00;1;_'

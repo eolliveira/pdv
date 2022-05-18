@@ -2,7 +2,7 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
   Left = 0
   Top = 0
   Caption = 'Funcion'#225'rios'
-  ClientHeight = 313
+  ClientHeight = 312
   ClientWidth = 667
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -74,6 +74,7 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
     Height = 21
     Enabled = False
     TabOrder = 4
+    OnChange = cb_cargoChange
   end
   object txt_cpf: TMaskEdit
     Left = 296
@@ -133,5 +134,12 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
     Caption = 'Cancelar'
     TabOrder = 8
     OnClick = btn_cancelarClick
+  end
+  object txt_cargo_id: TEdit
+    Left = 408
+    Top = 104
+    Width = 34
+    Height = 21
+    TabOrder = 9
   end
 end

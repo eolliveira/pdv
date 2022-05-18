@@ -2,7 +2,7 @@ object frm_menu: Tfrm_menu
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  Caption = 'Menu'
+  Caption = 'PVD'
   ClientHeight = 540
   ClientWidth = 994
   Color = clMedGray

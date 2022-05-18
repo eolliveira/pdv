@@ -21,7 +21,7 @@ object dm: Tdm
   object query_cargos: TFDQuery
     Connection = fd_cenecction
     SQL.Strings = (
-      'SELECT * FROM cargos')
+      'SELECT * FROM tb_cargo')
     Left = 72
     Top = 368
     object query_cargosid: TFDAutoIncField
@@ -39,20 +39,21 @@ object dm: Tdm
       Size = 25
     end
   end
-  object tb_cargos: TFDTable
+  object tb_cargo: TFDTable
+    Active = True
     IndexFieldNames = 'id'
     Connection = fd_cenecction
-    TableName = 'pvd.cargos'
+    TableName = 'pvd.tb_cargo'
     Left = 80
     Top = 208
-    object tb_cargosid: TFDAutoIncField
+    object tb_cargoid: TFDAutoIncField
       DisplayWidth = 3
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
       ReadOnly = True
     end
-    object tb_cargoscargo: TStringField
+    object tb_cargocargo: TStringField
       DisplayWidth = 36
       FieldName = 'cargo'
       Origin = 'cargo'
@@ -101,11 +102,10 @@ object dm: Tdm
       Origin = 'endereco'
       Size = 100
     end
-    object tb_funcionariocargo: TStringField
-      FieldName = 'cargo'
-      Origin = 'cargo'
+    object tb_funcionariocargo_id: TIntegerField
+      FieldName = 'cargo_id'
+      Origin = 'cargo_id'
       Required = True
-      Size = 100
     end
   end
   object query_funcionario: TFDQuery
@@ -119,5 +119,22 @@ object dm: Tdm
     DataSet = query_funcionario
     Left = 216
     Top = 288
+  end
+  object query_funcionario_cargo: TFDQuery
+    Connection = fd_cenecction
+    SQL.Strings = (
+      'SELECT'
+      ' f.id,'
+      ' f.nome,'
+      ' f.cpf,'
+      ' f.telefone,'
+      ' f.endereco,'
+      ' c.cargo'
+      'FROM '
+      ' tb_funcionario f'
+      'JOIN tb_cargo c ON c.id = f.cargo_id'
+      'WHERE f.id = 4 ')
+    Left = 392
+    Top = 368
   end
 end

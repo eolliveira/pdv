@@ -91,9 +91,6 @@ end;
 procedure Tfrm_funcionarios.FormShow(Sender: TObject);
 begin
     atualizaGrid;
-
-    //checkBox
-
 end;
 
 procedure Tfrm_funcionarios.rb_cpfClick(Sender: TObject);
@@ -131,7 +128,7 @@ procedure Tfrm_funcionarios.atualizaGrid;
 begin
   dm.query_funcionario.Close;
   dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario Order by nome');
+  dm.query_funcionario.SQL.Add('SELECT f.id, f.nome, f.cpf, f.telefone, f.endereco, c.cargo FROM tb_funcionario f JOIN tb_cargo c ON c.id = f.cargo_id');
   dm.query_funcionario.Open();
 end;
 
