@@ -34,6 +34,7 @@ type
     procedure verificaFuncionarioExistente;
     procedure habilitaCamposEdicao;
     procedure associaCampos;
+    procedure cb_cargoChange(Sender: TObject);
   private
     id_func : string;
     nome_func : string;
@@ -186,6 +187,16 @@ begin
     //exibe no ComboBox o primeiro registro da query
     cb_cargo.ItemIndex := 0;
   end;
+end;
+
+procedure Tfrm_funcionarios_edit.cb_cargoChange(Sender: TObject);
+begin
+  dm.query_cargos.Close;
+  dm.query_cargos.SQL.Clear;
+  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE tb.cargo.cargo = :cargo');
+  dm.query_funcionario.ParamByName('cargo').Value := cb_cargo.Text;
+  dm.query_cargos.Open;
+
 end;
 
 procedure Tfrm_funcionarios_edit.FormClose(Sender: TObject;

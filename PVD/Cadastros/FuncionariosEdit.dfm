@@ -140,6 +140,7 @@ object frm_funcionarios_edit: Tfrm_funcionarios_edit
     Top = 104
     Width = 34
     Height = 21
+    Enabled = False
     TabOrder = 9
   end
 end

@@ -180,18 +180,25 @@ begin
     while not dm.query_cargos.Eof do
     begin
       cb_cargo.Items.Add(dm.query_cargos.FieldByName('cargo').AsString);
-      txt_cargo_id.Text := dm.query_cargos.FieldByName('id').AsString;
       dm.query_cargos.Next;
     end;
 
     //exibe no ComboBox o primeiro registro da query
-    cb_cargo.ItemIndex := 0;
+    //cb_cargo.ItemIndex := 0;
   end;
 end;
 
 procedure Tfrm_funcionarios_edit.cb_cargoChange(Sender: TObject);
 begin
-  //messageDlg(  , TMsgDlgType.mtInformation, mbOKCancel, 0);
+  dm.query_cargos.Close;
+  dm.query_cargos.SQL.Clear;
+  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE tb_cargo.cargo = :cargo');
+  dm.query_cargos.ParamByName('cargo').Value := cb_cargo.Text;
+  dm.query_cargos.Open;
+
+  //pega o id do cargo selecionado
+  txt_cargo_id.Text := dm.query_cargos.FieldByName('id').AsString;
+
 end;
 
 procedure Tfrm_funcionarios_edit.FormClose(Sender: TObject;
