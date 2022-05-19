@@ -209,7 +209,7 @@ procedure Tfrm_funcionarios_edit.FormShow(Sender: TObject);
 begin
 
   //ativa dataSet da TB
-    dm.tb_funcionario.Active := true;
+  dm.tb_funcionario.Active := true;
 
   if frm_funcionarios.nome_func = 'novo' then
   begin

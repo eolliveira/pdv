@@ -123,17 +123,7 @@ object dm: Tdm
   object query_funcionario_cargo: TFDQuery
     Connection = fd_cenecction
     SQL.Strings = (
-      'SELECT'
-      ' f.id,'
-      ' f.nome,'
-      ' f.cpf,'
-      ' f.telefone,'
-      ' f.endereco,'
-      ' c.cargo'
-      'FROM '
-      ' tb_funcionario f'
-      'JOIN tb_cargo c ON c.id = f.cargo_id'
-      'WHERE f.id = 4 ')
+      'SELECT * FROM tb_funcionario')
     Left = 392
     Top = 368
   end

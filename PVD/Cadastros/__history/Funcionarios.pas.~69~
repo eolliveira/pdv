@@ -34,6 +34,7 @@ type
     cpf_func : string;
     telefone_func : string;
     endereco_func : string;
+    id_cargo_func : string;
     cargo_func : string;
   end;
 
@@ -77,12 +78,17 @@ end;
 procedure Tfrm_funcionarios.DBGrid1DblClick(Sender: TObject);
 begin
 
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario');
+  dm.query_funcionario.Open();
+
   id_func := dm.query_funcionario.FieldByName('id').Value;
   nome_func := dm.query_funcionario.FieldByName('nome').Value;
   cpf_func := dm.query_funcionario.FieldByName('cpf').Value;
   telefone_func := dm.query_funcionario.FieldByName('telefone').Value;
   endereco_func := dm.query_funcionario.FieldByName('endereco').Value;
-  cargo_func := dm.query_funcionario.FieldByName('cargo').Value;
+  id_cargo_func := dm.query_funcionario.FieldByName('cargo_id').Value;
 
   frm_funcionarios_edit := Tfrm_funcionarios_edit.Create(Self);
   frm_funcionarios_edit.ShowModal;

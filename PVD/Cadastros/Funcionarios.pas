@@ -35,7 +35,6 @@ type
     telefone_func : string;
     endereco_func : string;
     id_cargo_func : string;
-    cargo_func : string;
   end;
 
 var
@@ -57,31 +56,14 @@ begin
   frm_funcionarios_edit.ShowModal;
 end;
 
-procedure Tfrm_funcionarios.buscaPorCpf;
-begin
-  dm.query_funcionario.Close;
-  dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf = :cpf');
-  dm.query_funcionario.ParamByName('cpf').Value := txt_busca_cpf.Text;
-  dm.query_funcionario.Open();
-end;
-
-procedure Tfrm_funcionarios.buscaPorNome;
-begin
-  dm.query_funcionario.Close;
-  dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE nome LIKE :nome');
-  dm.query_funcionario.ParamByName('nome').Value := txt_busca_nome.Text + '%';
-  dm.query_funcionario.Open();
-end;
-
 procedure Tfrm_funcionarios.DBGrid1DblClick(Sender: TObject);
 begin
-
+   {
   dm.query_funcionario.Close;
   dm.query_funcionario.SQL.Clear;
   dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario');
   dm.query_funcionario.Open();
+    }
 
   id_func := dm.query_funcionario.FieldByName('id').Value;
   nome_func := dm.query_funcionario.FieldByName('nome').Value;
@@ -92,6 +74,25 @@ begin
 
   frm_funcionarios_edit := Tfrm_funcionarios_edit.Create(Self);
   frm_funcionarios_edit.ShowModal;
+end;
+
+procedure Tfrm_funcionarios.buscaPorCpf;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf = :cpf');
+  dm.query_funcionario.ParamByName('cpf').Value := txt_busca_cpf.Text;
+  dm.query_funcionario.Open();
+end;
+
+
+procedure Tfrm_funcionarios.buscaPorNome;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE nome LIKE :nome');
+  dm.query_funcionario.ParamByName('nome').Value := txt_busca_nome.Text + '%';
+  dm.query_funcionario.Open();
 end;
 
 procedure Tfrm_funcionarios.FormShow(Sender: TObject);
@@ -134,7 +135,7 @@ procedure Tfrm_funcionarios.atualizaGrid;
 begin
   dm.query_funcionario.Close;
   dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT f.id, f.nome, f.cpf, f.telefone, f.endereco, c.cargo FROM tb_funcionario f JOIN tb_cargo c ON c.id = f.cargo_id');
+  dm.query_funcionario.SQL.Add('SELECT f.id, f.nome, f.cpf, f.telefone, f.endereco, f.cargo_id, c.cargo FROM tb_funcionario f JOIN tb_cargo c ON c.id = f.cargo_id');
   dm.query_funcionario.Open();
 end;
 

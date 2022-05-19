@@ -75,7 +75,7 @@ object frm_funcionarios: Tfrm_funcionarios
   end
   object DBGrid1: TDBGrid
     Left = 64
-    Top = 104
+    Top = 113
     Width = 817
     Height = 377
     DataSource = dm.ds_funcionario
@@ -121,13 +121,13 @@ object frm_funcionarios: Tfrm_funcionarios
       item
         Expanded = False
         FieldName = 'endereco'
-        Width = 166
+        Width = 188
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'cargo'
-        Width = 160
+        Width = 150
         Visible = True
       end>
   end
