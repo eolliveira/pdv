@@ -148,13 +148,13 @@ begin
 
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo = :cargo WHERE id = :id');
+    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo_id = :cargo_id WHERE id = :id');
     dm.query_cargos.ParamByName('id').Value := id_func;
     dm.query_cargos.ParamByName('nome').Value := txt_nome.Text;
     dm.query_cargos.ParamByName('cpf').Value := txt_cpf.Text;
     dm.query_cargos.ParamByName('telefone').Value := txt_telefone.Text;
     dm.query_cargos.ParamByName('endereco').Value := txt_endereco.Text;
-    dm.query_cargos.ParamByName('cargo').Value := cb_cargo.Text;
+    dm.query_cargos.ParamByName('cargo_id').Value := txt_cargo_id.Text;
     dm.query_cargos.ExecSQL();
 
     messageDlg('Dados do Funcionário alterados com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);

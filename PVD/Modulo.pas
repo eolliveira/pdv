@@ -30,7 +30,19 @@ type
     tb_funcionariotelefone: TStringField;
     tb_funcionarioendereco: TStringField;
     tb_funcionariocargo_id: TIntegerField;
-    query_funcionario_cargo: TFDQuery;
+    tb_usuario: TFDTable;
+    ds_usuarios: TDataSource;
+    query_usuarios: TFDQuery;
+    tb_usuarioid: TFDAutoIncField;
+    tb_usuariologin: TStringField;
+    tb_usuariosenha: TStringField;
+    tb_usuarioperfil: TStringField;
+    tb_usuariofuncionario_id: TIntegerField;
+    query_usuariosid: TFDAutoIncField;
+    query_usuarioslogin: TStringField;
+    query_usuariossenha: TStringField;
+    query_usuariosperfil: TStringField;
+    query_usuariosfuncionario_id: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }

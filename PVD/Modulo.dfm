@@ -8,9 +8,8 @@ object dm: Tdm
       'Database=pvd'
       'User_Name=root'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
-    Left = 152
+    Left = 192
     Top = 112
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
@@ -40,7 +39,6 @@ object dm: Tdm
     end
   end
   object tb_cargo: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = fd_cenecction
     TableName = 'pvd.tb_cargo'
@@ -120,11 +118,80 @@ object dm: Tdm
     Left = 216
     Top = 288
   end
-  object query_funcionario_cargo: TFDQuery
+  object tb_usuario: TFDTable
+    IndexFieldNames = 'id'
+    Connection = fd_cenecction
+    TableName = 'pvd.tb_usuario'
+    Left = 352
+    Top = 208
+    object tb_usuarioid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ReadOnly = True
+    end
+    object tb_usuariologin: TStringField
+      FieldName = 'login'
+      Origin = 'login'
+      Required = True
+      Size = 8
+    end
+    object tb_usuariosenha: TStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Required = True
+      Size = 100
+    end
+    object tb_usuarioperfil: TStringField
+      FieldName = 'perfil'
+      Origin = 'perfil'
+      Required = True
+      Size = 50
+    end
+    object tb_usuariofuncionario_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'funcionario_id'
+      Origin = 'funcionario_id'
+    end
+  end
+  object ds_usuarios: TDataSource
+    DataSet = query_usuarios
+    Left = 352
+    Top = 296
+  end
+  object query_usuarios: TFDQuery
     Connection = fd_cenecction
     SQL.Strings = (
-      'SELECT * FROM tb_funcionario')
-    Left = 392
+      'SELECT * FROM tb_usuario')
+    Left = 352
     Top = 368
+    object query_usuariosid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object query_usuarioslogin: TStringField
+      FieldName = 'login'
+      Origin = 'login'
+      Required = True
+      Size = 8
+    end
+    object query_usuariossenha: TStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Required = True
+      Size = 100
+    end
+    object query_usuariosperfil: TStringField
+      FieldName = 'perfil'
+      Origin = 'perfil'
+      Required = True
+      Size = 50
+    end
+    object query_usuariosfuncionario_id: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'funcionario_id'
+      Origin = 'funcionario_id'
+    end
   end
 end

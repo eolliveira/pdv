@@ -5,8 +5,8 @@ object frm_cargos: Tfrm_cargos
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Cargos'
-  ClientHeight = 477
-  ClientWidth = 458
+  ClientHeight = 423
+  ClientWidth = 468
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object frm_cargos: Tfrm_cargos
   PixelsPerInch = 96
   TextHeight = 13
   object gd_cargos: TDBGrid
-    Left = 8
-    Top = 99
+    Left = 24
+    Top = 24
     Width = 289
     Height = 337
     DataSource = dm.ds_cargos
@@ -55,8 +55,8 @@ object frm_cargos: Tfrm_cargos
       end>
   end
   object btn_novo: TButton
-    Left = 317
-    Top = 99
+    Left = 333
+    Top = 24
     Width = 91
     Height = 57
     Caption = 'Novo'

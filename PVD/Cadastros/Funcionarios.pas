@@ -104,6 +104,7 @@ procedure Tfrm_funcionarios.rb_cpfClick(Sender: TObject);
 begin
   txt_busca_nome.Visible := false;
   txt_busca_cpf.Visible := true;
+  txt_busca_cpf.SetFocus;
   buscaPorCpf;
 end;
 
