@@ -132,6 +132,10 @@
             <Form>frm_funcionarios_edit</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Cadastros\UsuarioEdit.pas">
+            <Form>frm_usuario_edit</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

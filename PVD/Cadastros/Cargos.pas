@@ -20,6 +20,7 @@ type
   public
     id_cargo : String;
     nome_cargo : string;
+    modoInsercao : Boolean;
   end;
 
 var
@@ -34,8 +35,7 @@ uses Modulo, CargosEdit;
 
 procedure Tfrm_cargos.btn_novoClick(Sender: TObject);
   begin
-    nome_cargo := 'novo';
-
+    modoInsercao := true;
     frm_cargos_edit := Tfrm_cargos_edit.Create(Self);
     frm_cargos_edit.ShowModal;
   end;
@@ -49,6 +49,8 @@ procedure Tfrm_cargos.gd_cargosDblClick(Sender: TObject);
   begin
     id_cargo := dm.query_cargos.FieldByName('id').Value;
     nome_cargo := dm.query_cargos.FieldByName('cargo').Value;
+
+    frm_cargos.modoInsercao := false;
 
     frm_cargos_edit := Tfrm_cargos_edit.Create(Self);
     frm_cargos_edit.ShowModal;

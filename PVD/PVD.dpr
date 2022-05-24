@@ -9,7 +9,8 @@ uses
   Cargos in 'Cadastros\Cargos.pas' {frm_cargos},
   Modulo in 'Modulo.pas' {dm: TDataModule},
   CargosEdit in 'Cadastros\CargosEdit.pas' {frm_cargos_edit},
-  FuncionariosEdit in 'Cadastros\FuncionariosEdit.pas' {frm_funcionarios_edit};
+  FuncionariosEdit in 'Cadastros\FuncionariosEdit.pas' {frm_funcionarios_edit},
+  UsuarioEdit in 'Cadastros\UsuarioEdit.pas' {frm_usuario_edit};
 
 {$R *.res}
 
@@ -18,5 +19,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(Tfrm_menu, frm_menu);
+  Application.CreateForm(Tfrm_usuario_edit, frm_usuario_edit);
   Application.Run;
 end.

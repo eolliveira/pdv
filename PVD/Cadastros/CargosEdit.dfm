@@ -69,6 +69,7 @@ object frm_cargos_edit: Tfrm_cargos_edit
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    OnKeyPress = txt_cargoKeyPress
   end
   object btn_cancelar: TButton
     Left = 334

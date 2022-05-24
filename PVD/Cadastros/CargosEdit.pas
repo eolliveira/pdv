@@ -20,10 +20,13 @@ type
     procedure btn_cancelarClick(Sender: TObject);
     procedure btn_removerClick(Sender: TObject);
     procedure verificaCargoExistente;
+    procedure verificaNomeCargo;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure txt_cargoKeyPress(Sender: TObject; var Key: Char);
   private
     id_cargo : string;
     nome_cargo : string;
+    nome_cargo_antigo : string;
   public
     { Public declarations }
   end;
@@ -50,8 +53,13 @@ begin
   btn_remover.Enabled := false;
   btn_cancelar.Enabled := true;
   txt_cargo.Enabled := true;
+  txt_cargo.SetFocus;
+
+  nome_cargo_antigo := nome_cargo;
 
   dm.tb_cargo.Edit;
+
+  frm_cargos.modoInsercao := false;
 end;
 
 procedure Tfrm_cargos_edit.btn_removerClick(Sender: TObject);
@@ -59,6 +67,20 @@ begin
 
   if MessageDlg('Deseja excluir o cargo?', mtInformation,[mbYes, mbNo], 0) = mrYes then
   begin
+
+    dm.query_funcionario.Close;
+    dm.query_funcionario.SQL.Clear;
+    dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario f JOIN tb_cargo c ON c.id = f.cargo_id WHERE cargo_id = :id');
+    dm.query_funcionario.ParamByName('id').Value := id_cargo;
+    dm.query_funcionario.Open;
+
+    if not dm.query_funcionario.IsEmpty then
+    begin
+      messageDlg('Voce não pode remover esse cargo. Pois ele pertence a um ou mais funcionário(s)!', TMsgDlgType.mtWarning, mbOKCancel, 0);
+      Close;
+      Exit;
+    end;
+
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
     dm.query_cargos.SQL.Add('DELETE FROM tb_cargo WHERE tb_cargo.id = :id');
@@ -74,15 +96,15 @@ procedure Tfrm_cargos_edit.btn_salvarClick(Sender: TObject);
 begin
 
   //modo inserção
-  if frm_cargos.nome_cargo = 'novo' then
+  if frm_cargos.modoInsercao = true then
   begin
 
-    if Trim(txt_cargo.text) = '' then
-    begin
+     if txt_cargo.text = '' then
+     begin
       messageDlg('Insira um nome para o Cargo!', TMsgDlgType.mtInformation, mbOKCancel, 0);
       txt_cargo.SetFocus;
       Exit
-    end;
+     end;
 
     verificaCargoExistente;
 
@@ -98,11 +120,22 @@ begin
     dm.tb_cargo.Post;
     messageDlg('Cargo cadastrado com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     Close;
-  end
-  else
+  end;
+
   //modo edição
+  if frm_cargos.modoInsercao = false then
   begin
-    if Trim(txt_cargo.text) = '' then
+
+    //verifica se houve alteração no nome do cargo
+    if nome_cargo_antigo = txt_cargo.Text then
+    begin
+      dm.query_cargos.Close;
+      Close;
+      Exit;
+    end;
+
+
+    if txt_cargo.text = '' then
     begin
       messageDlg('Insira um nome para o Cargo!', TMsgDlgType.mtInformation, mbOKCancel, 0);
       txt_cargo.SetFocus;
@@ -142,7 +175,9 @@ end;
 procedure Tfrm_cargos_edit.FormShow(Sender: TObject);
 begin
 
-  if frm_cargos.nome_cargo = 'novo' then
+  dm.tb_cargo.Active := true;
+
+  if frm_cargos.modoInsercao = true then
   begin
     btn_salvar.Enabled := true;
     btn_editar.Enabled := false;
@@ -162,12 +197,28 @@ begin
 
 end;
 
+procedure Tfrm_cargos_edit.txt_cargoKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 Then
+  btn_salvar.Click;
+end;
+
 procedure Tfrm_cargos_edit.verificaCargoExistente;
 begin
   dm.query_cargos.Close;
   dm.query_cargos.SQL.Clear;
   dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE cargo = ' + QuotedStr(Trim(txt_cargo.Text)));
   dm.query_cargos.Open();
+end;
+
+procedure Tfrm_cargos_edit.verificaNomeCargo;
+begin
+  if txt_cargo.text = '' then
+  begin
+    messageDlg('Insira um nome para o Cargo!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+    txt_cargo.SetFocus;
+    Exit
+  end;
 end;
 
 end.
