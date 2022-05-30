@@ -8,6 +8,7 @@ object dm: Tdm
       'Database=pvd'
       'User_Name=root'
       'DriverID=MySQL')
+    Connected = True
     LoginPrompt = False
     Left = 192
     Top = 112
@@ -118,51 +119,15 @@ object dm: Tdm
     Left = 216
     Top = 288
   end
-  object tb_usuario: TFDTable
-    IndexFieldNames = 'id'
-    Connection = fd_cenecction
-    TableName = 'pvd.tb_usuario'
-    Left = 352
-    Top = 208
-    object tb_usuarioid: TFDAutoIncField
-      FieldName = 'id'
-      Origin = 'id'
-      ReadOnly = True
-    end
-    object tb_usuariologin: TStringField
-      FieldName = 'login'
-      Origin = 'login'
-      Required = True
-      Size = 8
-    end
-    object tb_usuariosenha: TStringField
-      FieldName = 'senha'
-      Origin = 'senha'
-      Required = True
-      Size = 100
-    end
-    object tb_usuarioperfil: TStringField
-      FieldName = 'perfil'
-      Origin = 'perfil'
-      Required = True
-      Size = 50
-    end
-    object tb_usuariofuncionario_id: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'funcionario_id'
-      Origin = 'funcionario_id'
-    end
-  end
-  object ds_usuarios: TDataSource
-    DataSet = query_usuarios
-    Left = 352
-    Top = 296
-  end
   object query_usuarios: TFDQuery
+    Active = True
     Connection = fd_cenecction
     SQL.Strings = (
-      'SELECT * FROM tb_usuario')
-    Left = 352
+      
+        'SELECT u.id, u.login, u.senha, u.perfil, u.funcionario_id, f.nom' +
+        'e FROM tb_usuario u JOIN tb_funcionario f ON u.funcionario_id = ' +
+        'f.id')
+    Left = 368
     Top = 368
     object query_usuariosid: TFDAutoIncField
       FieldName = 'id'
@@ -180,7 +145,7 @@ object dm: Tdm
       FieldName = 'senha'
       Origin = 'senha'
       Required = True
-      Size = 100
+      Size = 50
     end
     object query_usuariosperfil: TStringField
       FieldName = 'perfil'
@@ -193,5 +158,46 @@ object dm: Tdm
       FieldName = 'funcionario_id'
       Origin = 'funcionario_id'
     end
+  end
+  object tb_usuario: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = fd_cenecction
+    TableName = 'pvd.tb_usuario'
+    Left = 368
+    Top = 208
+    object tb_usuarioid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object tb_usuariologin: TStringField
+      FieldName = 'login'
+      Origin = 'login'
+      Required = True
+      Size = 50
+    end
+    object tb_usuariosenha: TStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Required = True
+      Size = 50
+    end
+    object tb_usuarioperfil: TStringField
+      FieldName = 'perfil'
+      Origin = 'perfil'
+      Required = True
+      Size = 50
+    end
+    object tb_usuariofuncionario_id: TIntegerField
+      FieldName = 'funcionario_id'
+      Origin = 'funcionario_id'
+      Required = True
+    end
+  end
+  object ds_usuario: TDataSource
+    DataSet = query_usuarios
+    Left = 368
+    Top = 288
   end
 end

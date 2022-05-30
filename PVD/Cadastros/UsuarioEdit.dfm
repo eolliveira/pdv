@@ -466,7 +466,7 @@ object frm_usuario_edit: Tfrm_usuario_edit
     OnClick = SpeedButton1Click
   end
   object btn_salvar: TButton
-    Left = 140
+    Left = 126
     Top = 170
     Width = 91
     Height = 57
@@ -484,15 +484,16 @@ object frm_usuario_edit: Tfrm_usuario_edit
     OnClick = btn_editarClick
   end
   object btn_remover: TButton
-    Left = 245
+    Left = 223
     Top = 170
     Width = 91
     Height = 57
     Caption = 'Remover'
     TabOrder = 2
+    OnClick = btn_removerClick
   end
   object btn_cancelar: TButton
-    Left = 342
+    Left = 320
     Top = 170
     Width = 91
     Height = 57

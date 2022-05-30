@@ -58,12 +58,6 @@ end;
 
 procedure Tfrm_funcionarios.DBGrid1DblClick(Sender: TObject);
 begin
-   {
-  dm.query_funcionario.Close;
-  dm.query_funcionario.SQL.Clear;
-  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario');
-  dm.query_funcionario.Open();
-    }
 
   id_func := dm.query_funcionario.FieldByName('id').Value;
   nome_func := dm.query_funcionario.FieldByName('nome').Value;

@@ -33,12 +33,14 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure txt_func_idChange(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
+    procedure btn_removerClick(Sender: TObject);
   private
     id_usuario : string;
     login : string;
     senha : string;
     perfil : string;
     func_id : string;
+    func_id_antigo : string;
   public
     { Public declarations }
   end;
@@ -137,8 +139,24 @@ begin
   habilitaCampos;
 
   dm.tb_usuario.Edit;
+  func_id_antigo := txt_func_id.Text;
 
   frm_usuarios.modoInsercao := false;
+end;
+
+procedure Tfrm_usuario_edit.btn_removerClick(Sender: TObject);
+begin
+  if MessageDlg('Deseja excluir o usuário?', mtInformation,[mbYes, mbNo], 0) = mrYes then
+  begin
+    dm.query_cargos.Close;
+    dm.query_cargos.SQL.Clear;
+    dm.query_cargos.SQL.Add('DELETE FROM tb_usuario WHERE id = :id');
+    dm.query_cargos.ParamByName('id').Value := id_usuario;
+    dm.query_cargos.ExecSQL();
+
+    messageDlg('Usuário foi removido com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+    Close;
+  end;
 end;
 
 procedure Tfrm_usuario_edit.btn_salvarClick(Sender: TObject);
@@ -147,6 +165,7 @@ begin
   if frm_usuarios.modoInsercao = true then
   begin
 
+    //validação, campo usuário vazio
      if txt_usuario.text = '' then
      begin
       messageDlg('Insira um login para o Usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
@@ -154,24 +173,60 @@ begin
       Exit
      end;
 
-    //verificaCargoExistente;
-
-    {
-    if not dm.query_cargos.IsEmpty then
+     //validação, campo ID_FUNCIONARIO vazio
+     if txt_func_id.Text = Trim('') then
     begin
-      messageDlg('Cargo ja existente! Por favor insira outro nome', TMsgDlgType.mtInformation, mbOKCancel, 0);
-      txt_cargo.SetFocus;
+      messageDlg('Vincule um Funcionário ao usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      txt_func_id.SetFocus;
       Exit
     end;
-    }
+
+    //validação , funcionario valido
+     dm.query_funcionario.Close;
+     dm.query_funcionario.SQL.Clear;
+     dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario f WHERE f.id = :id');
+     dm.query_funcionario.ParamByName('id').Value := txt_func_id.Text;
+     dm.query_funcionario.Open;
+
+     if not dm.query_funcionario.IsEmpty then
+     begin
+       dm.tb_usuario.FieldByName('funcionario_id').Value := txt_func_id.Text;
+     end
+     else
+     begin
+       messageDlg('Vincule um Funcionário válido ao usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+       txt_func_id.SetFocus;
+       Exit
+     end;
+
+
+     //validação , usuário ja atribuido
+     dm.query_usuarios.Close;
+     dm.query_usuarios.SQL.Clear;
+     dm.query_usuarios.SQL.Add('SELECT * FROM tb_usuario WHERE tb_usuario.funcionario_id = :id');
+     dm.query_usuarios.ParamByName('id').Value := txt_func_id.Text;
+     dm.query_usuarios.Open;
+
+    if not dm.query_usuarios.IsEmpty then
+    begin
+      messageDlg('Usuário ja esta atribuido a um Funcianário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      txt_func_id.SetFocus;
+      Exit
+    end;
+
+    //validação perfil vazio
+    if cb_perfil.Text = '' then
+    begin
+      messageDlg('Informe um perfil para o usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      cb_perfil.SetFocus;
+      Exit
+    end;
 
     //associa campo do BD, ao campo do formulario
     dm.tb_usuario.FieldByName('login').Value := txt_usuario.Text;
     dm.tb_usuario.FieldByName('senha').Value := txt_senha.Text;
     dm.tb_usuario.FieldByName('perfil').Value := cb_perfil.Text;
 
-    if txt_func_id.Text <> Trim('') then
-    dm.tb_usuario.FieldByName('funcionario_id').Value := txt_func_id.Text;
 
     dm.tb_usuario.Post;
     messageDlg('Usuário foi cadastrado com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
@@ -182,31 +237,71 @@ begin
   if frm_usuarios.modoInsercao = false then
   begin
 
-    if txt_usuario.text = '' then
-    begin
+    //validação, campo usuário vazio
+     if txt_usuario.text = '' then
+     begin
       messageDlg('Insira um login para o Usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
       txt_usuario.SetFocus;
       Exit
-    end;
+     end;
 
-    //verificaCargoExistente;
-
-    {
-    if not dm.query_cargos.IsEmpty then
+     //validação, campo id funcionario vazio
+     if txt_func_id.Text = Trim('') then
     begin
-      messageDlg('Cargo ja existente! Por favor insira outro nome', TMsgDlgType.mtInformation, mbOKCancel, 0);
-      txt_cargo.SetFocus;
+      messageDlg('Vincule um Funcionário ao usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      txt_func_id.SetFocus;
       Exit
     end;
-    }
+
+    //validação , funcionario valido
+     dm.query_funcionario.Close;
+     dm.query_funcionario.SQL.Clear;
+     dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario f WHERE f.id = :id');
+     dm.query_funcionario.ParamByName('id').Value := txt_func_id.Text;
+     dm.query_funcionario.Open;
+
+     if not dm.query_funcionario.IsEmpty then
+     begin
+       dm.tb_usuario.FieldByName('funcionario_id').Value := txt_func_id.Text;
+     end
+     else
+     begin
+       messageDlg('Vincule um Funcionário válido ao usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+       txt_func_id.SetFocus;
+       Exit
+     end;
+
+
+     if func_id_antigo <> txt_func_id.Text then
+     begin
+       //validação , usuário ja atribuido
+               dm.query_usuarios.Close;
+               dm.query_usuarios.SQL.Clear;
+               dm.query_usuarios.SQL.Add('SELECT * FROM tb_usuario WHERE tb_usuario.funcionario_id = :id');
+               dm.query_usuarios.ParamByName('id').Value := txt_func_id.Text;
+               dm.query_usuarios.Open;
+
+              if not dm.query_usuarios.IsEmpty then
+              begin
+                messageDlg('Usuário ja esta atribuido a um Funcianário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+                txt_func_id.SetFocus;
+                Exit
+              end;
+     end;
+
+    //validação perfil vazio
+    if cb_perfil.Text = '' then
+    begin
+      messageDlg('Informe um perfil para o usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      cb_perfil.SetFocus;
+      Exit
+    end;
 
     //associa campo do BD, ao campo do formulario
     dm.tb_usuario.FieldByName('login').Value := txt_usuario.Text;
     dm.tb_usuario.FieldByName('senha').Value := txt_senha.Text;
     dm.tb_usuario.FieldByName('perfil').Value := cb_perfil.Text;
 
-    if txt_func_id.Text <> Trim('') then
-    dm.tb_usuario.FieldByName('funcionario_id').Value := txt_func_id.Text;
 
     dm.query_usuarios.Close;
     dm.query_usuarios.SQL.Clear;
@@ -214,16 +309,7 @@ begin
     dm.query_usuarios.ParamByName('login').Value := txt_usuario.Text;
     dm.query_usuarios.ParamByName('senha').Value := txt_senha.Text;
     dm.query_usuarios.ParamByName('perfil').Value := cb_perfil.Text;
-
-    if txt_func_id.Text <> Trim('') then
-    begin
-      dm.query_usuarios.ParamByName('funcionario_id').Value := txt_func_id.Text;
-    end
-    else
-    begin
-      dm.query_usuarios.ParamByName('funcionario_id').Value := null;
-    end;
-
+    dm.query_usuarios.ParamByName('funcionario_id').Value := func_id;
     dm.query_usuarios.ParamByName('id').Value := id_usuario;
     dm.query_usuarios.ExecSQL();
 

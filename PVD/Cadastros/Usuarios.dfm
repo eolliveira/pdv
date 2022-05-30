@@ -14,7 +14,7 @@ object frm_usuarios: Tfrm_usuarios
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
-  OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object btn_novo: TButton
@@ -27,11 +27,11 @@ object frm_usuarios: Tfrm_usuarios
     OnClick = btn_novoClick
   end
   object grid_usuarios: TDBGrid
-    Left = 40
+    Left = 24
     Top = 35
-    Width = 617
-    Height = 281
-    DataSource = dm.ds_usuarios
+    Width = 921
+    Height = 270
+    DataSource = dm.ds_usuario
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
@@ -54,19 +54,22 @@ object frm_usuarios: Tfrm_usuarios
       item
         Expanded = False
         FieldName = 'senha'
-        Width = 140
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'perfil'
-        Width = 200
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'funcionario_id'
-        Width = 76
+        Width = 174
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome'
         Visible = True
       end>
   end

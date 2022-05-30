@@ -33,7 +33,7 @@ implementation
 
 {$R *.dfm}
 
-uses Menu;
+uses Menu, Modulo;
 
 procedure Tfrm_login.btn_entrarClick(Sender: TObject);
 begin
@@ -50,6 +50,35 @@ begin
     txt_senha.SetFocus;
     Exit
   end;
+
+  //validação login
+  dm.query_usuarios.Close;
+  dm.query_usuarios.SQL.Clear;
+  dm.query_usuarios.SQL.Add('SELECT * FROM tb_usuario WHERE login = :login ');
+  dm.query_usuarios.ParamByName('login').Value := txt_usuario.Text;
+  dm.query_usuarios.Open();
+
+  if dm.query_usuarios.IsEmpty then
+  begin
+    messageDlg('Usuário Incorreto!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+    txt_usuario.SetFocus;
+    Exit
+  end;
+
+  //validação senha
+  dm.query_usuarios.Close;
+  dm.query_usuarios.SQL.Clear;
+  dm.query_usuarios.SQL.Add('SELECT * FROM tb_usuario WHERE senha = :senha ');
+  dm.query_usuarios.ParamByName('senha').Value := txt_senha.Text;
+  dm.query_usuarios.Open();
+
+  if dm.query_usuarios.IsEmpty then
+  begin
+    messageDlg('Senha Incorreta!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+    txt_senha.SetFocus;
+    Exit
+  end;
+
 
   login;
 
