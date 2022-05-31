@@ -19,6 +19,8 @@ type
     procedure FormCanResize(Sender: TObject; var NewWidth, NewHeight: Integer;
       var Resize: Boolean);
     procedure btn_entrarClick(Sender: TObject);
+    procedure txt_senhaKeyPress(Sender: TObject; var Key: Char);
+    procedure txt_usuarioKeyPress(Sender: TObject; var Key: Char);
   private
     procedure centralizarPainel;
     procedure login;
@@ -33,10 +35,11 @@ implementation
 
 {$R *.dfm}
 
+uses Menu, Modulo;
+
 procedure Tfrm_login.btn_entrarClick(Sender: TObject);
 begin
   if Trim(txt_usuario.text) = '' then
-
   begin
     messageDlg('Insira um usuário!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     txt_usuario.SetFocus;
@@ -46,6 +49,34 @@ begin
   if Trim(txt_senha.Text) = '' then
   begin
     messageDlg('Insira a Senha!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+    txt_senha.SetFocus;
+    Exit
+  end;
+
+  //validação login
+  dm.query_usuarios.Close;
+  dm.query_usuarios.SQL.Clear;
+  dm.query_usuarios.SQL.Add('SELECT * FROM tb_usuario WHERE login = :login ');
+  dm.query_usuarios.ParamByName('login').Value := txt_usuario.Text;
+  dm.query_usuarios.Open();
+
+  if dm.query_usuarios.IsEmpty then
+  begin
+    messageDlg('Usuário Incorreto!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+    txt_usuario.SetFocus;
+    Exit
+  end;
+
+  //validação senha
+  dm.query_usuarios.Close;
+  dm.query_usuarios.SQL.Clear;
+  dm.query_usuarios.SQL.Add('SELECT * FROM tb_usuario WHERE senha = :senha ');
+  dm.query_usuarios.ParamByName('senha').Value := txt_senha.Text;
+  dm.query_usuarios.Open();
+
+  if dm.query_usuarios.IsEmpty then
+  begin
+    messageDlg('Senha Incorreta!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     txt_senha.SetFocus;
     Exit
   end;
@@ -68,7 +99,20 @@ end;
 
 procedure Tfrm_login.login;
 begin
-  ShowMessage('Login Efetuado com sucesso!');
+  frm_menu := Tfrm_menu.Create(Self);
+  frm_menu.ShowModal;
+end;
+
+procedure Tfrm_login.txt_senhaKeyPress(Sender: TObject; var Key: Char);
+begin
+  If Key = #13 Then
+  btn_entrar.Click;
+end;
+
+procedure Tfrm_login.txt_usuarioKeyPress(Sender: TObject; var Key: Char);
+begin
+  If Key = #13 Then
+  btn_entrar.Click;
 end;
 
 end.

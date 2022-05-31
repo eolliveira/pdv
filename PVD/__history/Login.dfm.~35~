@@ -6230,7 +6230,7 @@ object frm_login: Tfrm_login
         21B925FA0A8AAF4B26531E68AA186D2328C927115AEA6899FFD9}
       Stretch = True
       ExplicitLeft = 2
-      ExplicitTop = 49
+      ExplicitTop = 2
     end
     object pnl_login: TPanel
       Left = 320
@@ -6555,8 +6555,9 @@ object frm_login: Tfrm_login
           00088802001010050020200A004040140080802800000151000002A200000444
           0100088802001010050020200A004040140080802800000151000002A2000004
           44010008FF036FFCF8EEC4CA7DAB0000000049454E44AE426082}
-        ExplicitLeft = -55
-        ExplicitTop = -55
+        Stretch = True
+        ExplicitLeft = 0
+        ExplicitTop = 0
       end
       object btn_entrar: TSpeedButton
         Left = 32
@@ -6576,7 +6577,7 @@ object frm_login: Tfrm_login
       end
       object txt_usuario: TEdit
         Left = 76
-        Top = 111
+        Top = 109
         Width = 221
         Height = 30
         Anchors = []
@@ -6588,10 +6589,11 @@ object frm_login: Tfrm_login
         Font.Style = []
         ParentFont = False
         TabOrder = 0
+        OnKeyPress = txt_usuarioKeyPress
       end
       object txt_senha: TEdit
         Left = 76
-        Top = 165
+        Top = 164
         Width = 221
         Height = 30
         BorderStyle = bsNone
@@ -6603,6 +6605,7 @@ object frm_login: Tfrm_login
         ParentFont = False
         PasswordChar = '*'
         TabOrder = 1
+        OnKeyPress = txt_senhaKeyPress
       end
     end
   end

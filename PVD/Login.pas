@@ -19,6 +19,8 @@ type
     procedure FormCanResize(Sender: TObject; var NewWidth, NewHeight: Integer;
       var Resize: Boolean);
     procedure btn_entrarClick(Sender: TObject);
+    procedure txt_senhaKeyPress(Sender: TObject; var Key: Char);
+    procedure txt_usuarioKeyPress(Sender: TObject; var Key: Char);
   private
     procedure centralizarPainel;
     procedure login;
@@ -79,7 +81,6 @@ begin
     Exit
   end;
 
-
   login;
 
 end;
@@ -100,6 +101,19 @@ procedure Tfrm_login.login;
 begin
   frm_menu := Tfrm_menu.Create(Self);
   frm_menu.ShowModal;
+  frm_login.Close;
+end;
+
+procedure Tfrm_login.txt_senhaKeyPress(Sender: TObject; var Key: Char);
+begin
+  If Key = #13 Then
+  btn_entrar.Click;
+end;
+
+procedure Tfrm_login.txt_usuarioKeyPress(Sender: TObject; var Key: Char);
+begin
+  If Key = #13 Then
+  btn_entrar.Click;
 end;
 
 end.

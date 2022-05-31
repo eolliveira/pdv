@@ -6229,8 +6229,8 @@ object frm_login: Tfrm_login
         C1AC1955A7933CCEAE544FD4556B2B89F79541D0CA7ABB6A6BBD1E774D7135DD
         21B925FA0A8AAF4B26531E68AA186D2328C927115AEA6899FFD9}
       Stretch = True
-      ExplicitLeft = 0
-      ExplicitTop = 2
+      ExplicitLeft = 57
+      ExplicitTop = 169
     end
     object pnl_login: TPanel
       Left = 320
@@ -6589,6 +6589,7 @@ object frm_login: Tfrm_login
         Font.Style = []
         ParentFont = False
         TabOrder = 0
+        OnKeyPress = txt_usuarioKeyPress
       end
       object txt_senha: TEdit
         Left = 76
@@ -6604,6 +6605,7 @@ object frm_login: Tfrm_login
         ParentFont = False
         PasswordChar = '*'
         TabOrder = 1
+        OnKeyPress = txt_senhaKeyPress
       end
     end
   end
