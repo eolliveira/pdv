@@ -148,11 +148,12 @@ procedure Tfrm_usuario_edit.btn_removerClick(Sender: TObject);
 begin
   if MessageDlg('Deseja excluir o usuário?', mtInformation,[mbYes, mbNo], 0) = mrYes then
   begin
-    dm.query_cargos.Close;
-    dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('DELETE FROM tb_usuario WHERE id = :id');
-    dm.query_cargos.ParamByName('id').Value := id_usuario;
-    dm.query_cargos.ExecSQL();
+
+    dm.query_usuarios.Close;
+    dm.query_usuarios.SQL.Clear;
+    dm.query_usuarios.SQL.Add('DELETE FROM tb_usuario WHERE id = :id');
+    dm.query_usuarios.ParamByName('id').Value := id_usuario;
+    dm.query_usuarios.ExecSQL();
 
     messageDlg('Usuário foi removido com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     Close;

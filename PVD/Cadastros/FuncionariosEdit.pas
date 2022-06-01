@@ -44,6 +44,7 @@ type
     cargo_func : string;
     id_cargo_func : string;
     cpf_antigo : string;
+    id_aux : string;
   public
     { Public declarations }
   end;
@@ -84,6 +85,14 @@ procedure Tfrm_funcionarios_edit.btn_removerClick(Sender: TObject);
 begin
    if MessageDlg('Deseja excluir o Funcionário?', mtInformation,[mbYes, mbNo], 0) = mrYes then
     begin
+
+      //REMOVE USUÁRIO ATRELADO
+      dm.query_usuarios.Close;
+      dm.query_usuarios.SQL.Clear;
+      dm.query_usuarios.SQL.Add('DELETE FROM tb_usuario WHERE funcionario_id = :id');
+      dm.query_usuarios.ParamByName('id').Value := id_func;
+      dm.query_usuarios.ExecSQL();
+
       dm.query_funcionario.Close;
       dm.query_funcionario.SQL.Clear;
       dm.query_funcionario.SQL.Add('DELETE FROM tb_funcionario WHERE tb_funcionario.id = :id');

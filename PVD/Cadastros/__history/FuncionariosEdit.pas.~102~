@@ -42,7 +42,9 @@ type
     telefone_func : string;
     endereco_func : string;
     cargo_func : string;
+    id_cargo_func : string;
     cpf_antigo : string;
+    id_aux : string;
   public
     { Public declarations }
   end;
@@ -83,6 +85,25 @@ procedure Tfrm_funcionarios_edit.btn_removerClick(Sender: TObject);
 begin
    if MessageDlg('Deseja excluir o Funcionário?', mtInformation,[mbYes, mbNo], 0) = mrYes then
     begin
+
+      //pega id do usuário vinculado
+      dm.query_usuarios.Close;
+      dm.query_usuarios.SQL.Clear;
+      dm.query_usuarios.SQL.Add('SELECT * FROM tb_usuario WHERE id = :id');
+      dm.query_usuarios.ParamByName('id').Value := id_func;
+      dm.query_usuarios.Open();
+
+      //pega id do usuário , pelo id do mfuncionario
+      id_aux := dm.query_usuarios.ParamByName('funcionario_id').Value;
+
+      dm.query_usuarios.Close;
+      dm.query_usuarios.SQL.Clear;
+      dm.query_usuarios.SQL.Add('DELETE FROM tb_usuario WHERE id = :id');
+      dm.query_usuarios.ParamByName('id').Value := id_aux;
+      dm.query_usuarios.ExecSQL();
+
+
+      //exclui funcionario
       dm.query_funcionario.Close;
       dm.query_funcionario.SQL.Clear;
       dm.query_funcionario.SQL.Add('DELETE FROM tb_funcionario WHERE tb_funcionario.id = :id');
@@ -147,13 +168,13 @@ begin
 
     dm.query_cargos.Close;
     dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo = :cargo WHERE id = :id');
+    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo_id = :cargo_id WHERE id = :id');
     dm.query_cargos.ParamByName('id').Value := id_func;
     dm.query_cargos.ParamByName('nome').Value := txt_nome.Text;
     dm.query_cargos.ParamByName('cpf').Value := txt_cpf.Text;
     dm.query_cargos.ParamByName('telefone').Value := txt_telefone.Text;
     dm.query_cargos.ParamByName('endereco').Value := txt_endereco.Text;
-    dm.query_cargos.ParamByName('cargo').Value := cb_cargo.Text;
+    dm.query_cargos.ParamByName('cargo_id').Value := txt_cargo_id.Text;
     dm.query_cargos.ExecSQL();
 
     messageDlg('Dados do Funcionário alterados com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
@@ -182,8 +203,6 @@ begin
       dm.query_cargos.Next;
     end;
 
-    //exibe no ComboBox o primeiro registro da query
-    //cb_cargo.ItemIndex := 0;
   end;
 end;
 
@@ -210,7 +229,7 @@ procedure Tfrm_funcionarios_edit.FormShow(Sender: TObject);
 begin
 
   //ativa dataSet da TB
-    dm.tb_funcionario.Active := true;
+  dm.tb_funcionario.Active := true;
 
   if frm_funcionarios.nome_func = 'novo' then
   begin
@@ -238,7 +257,8 @@ begin
     cpf_func := frm_funcionarios.cpf_func;
     telefone_func := frm_funcionarios.telefone_func;
     endereco_func := frm_funcionarios.endereco_func;
-    cargo_func := frm_funcionarios.cargo_func;
+    id_cargo_func := frm_funcionarios.id_cargo_func;
+    //cargo_func := frm_funcionarios.cargo_func;
 
     preencheCampos;
   end;
@@ -265,7 +285,19 @@ begin
   txt_endereco.Text := endereco_func;
   txt_cpf.Text := cpf_func;
   txt_telefone.Text := telefone_func;
-  cb_cargo.Text := cargo_func;
+
+  //buscando pelo id do cargo
+  dm.query_cargos.Close;
+  dm.query_cargos.SQL.Clear;
+  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE id = :id');
+  dm.query_cargos.ParamByName('id').Value := id_cargo_func;
+  dm.query_cargos.Open;
+
+  txt_cargo_id.Text := dm.query_cargos.FieldByName('id').Value;
+  cb_cargo.Text := dm.query_cargos.FieldByName('cargo').Value;
+
+
+  //cb_cargo.Text := cargo_func;
 end;
 
 procedure Tfrm_funcionarios_edit.verificaFuncionarioExistente;

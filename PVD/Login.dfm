@@ -6592,7 +6592,7 @@ object frm_login: Tfrm_login
         OnKeyPress = txt_usuarioKeyPress
       end
       object txt_senha: TEdit
-        Left = 76
+        Left = 68
         Top = 164
         Width = 221
         Height = 30
