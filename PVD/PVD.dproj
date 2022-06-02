@@ -136,6 +136,14 @@
             <Form>frm_usuario_edit</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Cadastros\Fornecedores.pas">
+            <Form>frm_fornecedores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Cadastros\FornecedorEdit.pas">
+            <Form>frm_fornecedores_edit</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

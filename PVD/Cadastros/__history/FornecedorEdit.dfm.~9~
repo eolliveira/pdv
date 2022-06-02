@@ -1,0 +1,101 @@
+object frm_fornecedores_edit: Tfrm_fornecedores_edit
+  Left = 0
+  Top = 0
+  Caption = 'Fornecedores'
+  ClientHeight = 299
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lb_nome: TLabel
+    Left = 29
+    Top = 9
+    Width = 27
+    Height = 13
+    Caption = 'Nome'
+  end
+  object lb_endereco: TLabel
+    Left = 29
+    Top = 117
+    Width = 45
+    Height = 13
+    Caption = 'Endereco'
+  end
+  object lb_telefone: TLabel
+    Left = 30
+    Top = 63
+    Width = 42
+    Height = 13
+    Caption = 'Telefone'
+  end
+  object btn_salvar: TButton
+    Left = 126
+    Top = 178
+    Width = 91
+    Height = 57
+    Caption = 'Salvar'
+    TabOrder = 0
+    OnClick = btn_salvarClick
+  end
+  object btn_editar: TButton
+    Left = 29
+    Top = 178
+    Width = 91
+    Height = 57
+    Caption = 'Editar'
+    TabOrder = 1
+    OnClick = btn_editarClick
+  end
+  object btn_remover: TButton
+    Left = 223
+    Top = 178
+    Width = 91
+    Height = 57
+    Caption = 'Remover'
+    TabOrder = 2
+    OnClick = btn_removerClick
+  end
+  object btn_cancelar: TButton
+    Left = 320
+    Top = 178
+    Width = 91
+    Height = 57
+    Caption = 'Cancelar'
+    TabOrder = 3
+    OnClick = btn_cancelarClick
+  end
+  object txt_nome: TEdit
+    Left = 29
+    Top = 28
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 4
+  end
+  object txt_endereco: TEdit
+    Left = 29
+    Top = 136
+    Width = 121
+    Height = 21
+    Enabled = False
+    TabOrder = 5
+  end
+  object txt_telefone: TMaskEdit
+    Left = 29
+    Top = 82
+    Width = 121
+    Height = 21
+    Enabled = False
+    EditMask = '!\(99\)00000-0000;1;_'
+    MaxLength = 14
+    TabOrder = 6
+    Text = '(  )     -    '
+  end
+end

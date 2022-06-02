@@ -170,12 +170,13 @@ object dm: Tdm
       FieldName = 'id'
       Origin = 'id'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object tb_usuariologin: TStringField
       FieldName = 'login'
       Origin = 'login'
       Required = True
-      Size = 50
+      Size = 8
     end
     object tb_usuariosenha: TStringField
       FieldName = 'senha'
@@ -199,5 +200,48 @@ object dm: Tdm
     DataSet = query_usuarios
     Left = 368
     Top = 288
+  end
+  object tb_fornecedor: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = fd_cenecction
+    TableName = 'pvd.tb_fornecedor'
+    Left = 520
+    Top = 216
+    object tb_fornecedorid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+    end
+    object tb_fornecedornome: TStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Required = True
+      Size = 100
+    end
+    object tb_fornecedorendereco: TStringField
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Required = True
+      Size = 100
+    end
+    object tb_fornecedortelefone: TStringField
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      Required = True
+      Size = 100
+    end
+  end
+  object ds_fornecedor: TDataSource
+    DataSet = query_fornecedores
+    Left = 520
+    Top = 296
+  end
+  object query_fornecedores: TFDQuery
+    Active = True
+    Connection = fd_cenecction
+    SQL.Strings = (
+      'SELECT * FROM tb_fornecedor')
+    Left = 520
+    Top = 368
   end
 end

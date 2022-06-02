@@ -26,6 +26,7 @@ object frm_menu: Tfrm_menu
       end
       object Fornecedores1: TMenuItem
         Caption = 'Fornecedores'
+        OnClick = Fornecedores1Click
       end
       object Fornecedores2: TMenuItem
         Caption = 'Usu'#225'rios'

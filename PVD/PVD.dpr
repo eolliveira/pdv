@@ -10,7 +10,9 @@ uses
   Modulo in 'Modulo.pas' {dm: TDataModule},
   CargosEdit in 'Cadastros\CargosEdit.pas' {frm_cargos_edit},
   FuncionariosEdit in 'Cadastros\FuncionariosEdit.pas' {frm_funcionarios_edit},
-  UsuarioEdit in 'Cadastros\UsuarioEdit.pas' {frm_usuario_edit};
+  UsuarioEdit in 'Cadastros\UsuarioEdit.pas' {frm_usuario_edit},
+  Fornecedores in 'Cadastros\Fornecedores.pas' {frm_fornecedores},
+  FornecedorEdit in 'Cadastros\FornecedorEdit.pas' {frm_fornecedores_edit};
 
 {$R *.res}
 
@@ -19,5 +21,7 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(Tfrm_login, frm_login);
+  Application.CreateForm(Tfrm_fornecedores, frm_fornecedores);
+  Application.CreateForm(Tfrm_fornecedores_edit, frm_fornecedores_edit);
   Application.Run;
 end.

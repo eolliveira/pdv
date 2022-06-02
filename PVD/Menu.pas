@@ -22,6 +22,7 @@ type
     procedure Fornecedores2Click(Sender: TObject);
     procedure Funcionarios1Click(Sender: TObject);
     procedure Cargos1Click(Sender: TObject);
+    procedure Fornecedores1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,13 +36,19 @@ implementation
 
 {$R *.dfm}
 
-uses Funcionarios, Usuarios, Cargos;
+uses Funcionarios, Usuarios, Cargos, Fornecedores;
 
 
 procedure Tfrm_menu.Cargos1Click(Sender: TObject);
 begin
   frm_cargos := Tfrm_cargos.Create(Self);
   frm_cargos.ShowModal;
+end;
+
+procedure Tfrm_menu.Fornecedores1Click(Sender: TObject);
+begin
+  frm_fornecedores := Tfrm_fornecedores.Create(Self);
+  frm_fornecedores.ShowModal;
 end;
 
 procedure Tfrm_menu.Fornecedores2Click(Sender: TObject);

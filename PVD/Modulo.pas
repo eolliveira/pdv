@@ -43,11 +43,18 @@ type
     tb_usuariosenha: TStringField;
     tb_usuarioperfil: TStringField;
     tb_usuariofuncionario_id: TIntegerField;
+    tb_fornecedor: TFDTable;
+    ds_fornecedor: TDataSource;
+    query_fornecedores: TFDQuery;
+    tb_fornecedorid: TFDAutoIncField;
+    tb_fornecedornome: TStringField;
+    tb_fornecedorendereco: TStringField;
+    tb_fornecedortelefone: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+    modoInsercao : Boolean;
   end;
 
 var

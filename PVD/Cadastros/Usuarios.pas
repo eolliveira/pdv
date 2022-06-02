@@ -23,7 +23,6 @@ type
     senha : string;
     perfil : string;
     func_id : string;
-    modoInsercao : Boolean;
   end;
 
 var
@@ -37,7 +36,7 @@ uses Modulo, UsuarioEdit;
 
 procedure Tfrm_usuarios.btn_novoClick(Sender: TObject);
 begin
-  modoInsercao := true;
+  dm.modoInsercao := true;
   frm_usuario_edit := Tfrm_usuario_edit.Create(Self);
   frm_usuario_edit.ShowModal;
 end;
@@ -57,7 +56,7 @@ begin
   if dm.query_usuarios.FieldByName('funcionario_id').Value <> null then
   func_id := dm.query_usuarios.FieldByName('funcionario_id').Value;
 
-  modoInsercao := false;
+  dm.modoInsercao := false;
 
   frm_usuario_edit := Tfrm_usuario_edit.Create(Self);
   frm_usuario_edit.ShowModal;

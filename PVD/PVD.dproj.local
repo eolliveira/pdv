@@ -12,17 +12,17 @@
     <Transaction>2022/05/03 00:00:04.000.089,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Usuarios.pas=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.pas</Transaction>
     <Transaction>2022/05/03 00:00:04.000.089,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Usuarios.dfm=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.dfm</Transaction>
     <Transaction>2022/05/03 07:14:44.000.834,=C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Unit1.pas</Transaction>
-    <Transaction>2022/05/03 07:15:04.000.065,C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Unit1.dfm=C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Funcionarios.dfm</Transaction>
     <Transaction>2022/05/03 07:15:04.000.065,C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Unit1.pas=C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Funcionarios.pas</Transaction>
+    <Transaction>2022/05/03 07:15:04.000.065,C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Unit1.dfm=C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Funcionarios.dfm</Transaction>
     <Transaction>2022/05/03 07:18:28.000.959,=C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Unit2.pas</Transaction>
     <Transaction>2022/05/03 07:19:06.000.126,C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Cadastros\Usuarios.dfm=C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Unit2.dfm</Transaction>
     <Transaction>2022/05/03 07:19:06.000.126,C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Cadastros\Usuarios.pas=C:\Users\erickoliveira\Documents\Embarcadero\Studio\Projects\Nova pasta\pvd\PVD\Unit2.pas</Transaction>
     <Transaction>2022/05/03 22:18:01.000.685,=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.pas</Transaction>
-    <Transaction>2022/05/03 22:18:12.000.787,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.dfm=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Cadastros\Cargos.dfm</Transaction>
     <Transaction>2022/05/03 22:18:12.000.787,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.pas=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Cadastros\Cargos.pas</Transaction>
+    <Transaction>2022/05/03 22:18:12.000.787,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.dfm=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Cadastros\Cargos.dfm</Transaction>
     <Transaction>2022/05/03 23:21:33.000.874,=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.pas</Transaction>
-    <Transaction>2022/05/03 23:21:51.000.375,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Modulo.dfm=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.dfm</Transaction>
     <Transaction>2022/05/03 23:21:51.000.375,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Modulo.pas=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.pas</Transaction>
+    <Transaction>2022/05/03 23:21:51.000.375,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Modulo.dfm=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pvd\PVD\Unit1.dfm</Transaction>
     <Transaction>2022/05/07 20:27:08.000.741,=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\PVD\Unit1.pas</Transaction>
     <Transaction>2022/05/07 20:27:30.000.165,=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\PVD\Unit1.pas</Transaction>
     <Transaction>2022/05/07 20:31:16.000.681,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\PVD\Unit1.pas=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\PVD\Cadastros\CargosEdit.pas</Transaction>
@@ -34,6 +34,12 @@
     <Transaction>2022/05/21 23:38:13.000.922,=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pdv\PVD\Unit1.pas</Transaction>
     <Transaction>2022/05/21 23:39:12.000.164,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pdv\PVD\Cadastros\UsuarioEdit.dfm=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pdv\PVD\Unit1.dfm</Transaction>
     <Transaction>2022/05/21 23:39:12.000.164,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pdv\PVD\Cadastros\UsuarioEdit.pas=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pvd\pdv\PVD\Unit1.pas</Transaction>
+    <Transaction>2022/06/01 22:26:01.000.203,=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Unit1.pas</Transaction>
+    <Transaction>2022/06/01 22:26:47.000.102,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Unit1.dfm=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Cadastros\Fornecedores.dfm</Transaction>
+    <Transaction>2022/06/01 22:26:47.000.102,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Unit1.pas=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Cadastros\Fornecedores.pas</Transaction>
+    <Transaction>2022/06/01 22:47:01.000.585,=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Unit1.pas</Transaction>
+    <Transaction>2022/06/01 22:48:12.000.955,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Unit1.pas=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Cadastros\FornecedorEdit.pas</Transaction>
+    <Transaction>2022/06/01 22:48:12.000.955,C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Unit1.dfm=C:\Users\Erick Oliveira\Documents\Embarcadero\Studio\Projects\pdv\PVD\Cadastros\FornecedorEdit.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="Cadastros"/>
@@ -49,6 +55,10 @@
     <File Path="Cadastros\FuncionariosEdit.dfm"/>
     <File Path="Cadastros\UsuarioEdit.pas"/>
     <File Path="Cadastros\UsuarioEdit.dfm"/>
+    <File Path="Cadastros\Fornecedores.pas"/>
+    <File Path="Cadastros\Fornecedores.dfm"/>
+    <File Path="Cadastros\FornecedorEdit.pas"/>
+    <File Path="Cadastros\FornecedorEdit.dfm"/>
     <File Path="Login.pas"/>
     <File Path="Login.dfm"/>
     <File Path="Menu.pas"/>

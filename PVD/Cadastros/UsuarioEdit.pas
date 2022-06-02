@@ -69,7 +69,7 @@ procedure Tfrm_usuario_edit.FormShow(Sender: TObject);
 begin
   dm.tb_usuario.Active := true;
 
-  if frm_usuarios.modoInsercao = true then
+  if dm.modoInsercao = true then
   begin
     btn_salvar.Enabled := true;
     btn_editar.Enabled := false;
@@ -125,7 +125,6 @@ end;
 
 procedure Tfrm_usuario_edit.btn_cancelarClick(Sender: TObject);
 begin
-  //dm.query_funcionario.Close;
   dm.tb_funcionario.Close;
   Close;
 end;
@@ -141,7 +140,7 @@ begin
   dm.tb_usuario.Edit;
   func_id_antigo := txt_func_id.Text;
 
-  frm_usuarios.modoInsercao := false;
+  dm.modoInsercao := false;
 end;
 
 procedure Tfrm_usuario_edit.btn_removerClick(Sender: TObject);
@@ -163,7 +162,7 @@ end;
 procedure Tfrm_usuario_edit.btn_salvarClick(Sender: TObject);
 begin
   //modo inserção
-  if frm_usuarios.modoInsercao = true then
+  if dm.modoInsercao = true then
   begin
 
     //validação, campo usuário vazio
@@ -235,7 +234,7 @@ begin
   end;
 
   //modo edição
-  if frm_usuarios.modoInsercao = false then
+  if dm.modoInsercao = false then
   begin
 
     //validação, campo usuário vazio
