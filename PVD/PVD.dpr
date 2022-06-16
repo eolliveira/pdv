@@ -21,7 +21,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(Tfrm_login, frm_login);
-  Application.CreateForm(Tfrm_fornecedores, frm_fornecedores);
-  Application.CreateForm(Tfrm_fornecedores_edit, frm_fornecedores_edit);
   Application.Run;
 end.

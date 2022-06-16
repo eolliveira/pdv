@@ -24,6 +24,7 @@ type
     procedure Cargos1Click(Sender: TObject);
     procedure Fornecedores1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Sair1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -69,6 +70,15 @@ procedure Tfrm_menu.Funcionarios1Click(Sender: TObject);
 begin
    frm_funcionarios := Tfrm_funcionarios.Create(Self);
    frm_funcionarios.ShowModal;
+end;
+
+procedure Tfrm_menu.Sair1Click(Sender: TObject);
+begin
+  /////
+  if MessageDlg('Deseja sair do Sistema?', mtInformation,[mbYes, mbNo], 0) = mrYes then
+  begin
+    Close;
+  end;
 end;
 
 end.

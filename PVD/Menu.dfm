@@ -54,6 +54,7 @@ object frm_menu: Tfrm_menu
     end
     object Sair1: TMenuItem
       Caption = 'Sair'
+      OnClick = Sair1Click
     end
   end
 end
