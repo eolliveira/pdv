@@ -25,7 +25,9 @@ type
     procedure centralizarPainel;
     procedure login;
   public
-    { Public declarations }
+    login_user_logado : String;
+    perfil_user_logado : String;
+
   end;
 
 var
@@ -80,6 +82,17 @@ begin
     txt_senha.SetFocus;
     Exit
   end;
+
+  //Salva usuário logado
+  dm.query_usuarios.Close;
+  dm.query_usuarios.SQL.Clear;
+  dm.query_usuarios.SQL.Add('SELECT * FROM tb_usuario WHERE senha = :senha AND login = :login');
+  dm.query_usuarios.ParamByName('senha').Value := txt_senha.Text;
+  dm.query_usuarios.ParamByName('login').Value := txt_usuario.Text;
+  dm.query_usuarios.Open();
+
+  login_user_logado := dm.query_usuarios.FieldByName('login').Value;
+  perfil_user_logado := dm.query_usuarios.FieldByName('perfil').Value;
 
   login;
 

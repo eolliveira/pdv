@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   Tfrm_menu = class(TForm)
@@ -14,15 +14,16 @@ type
     Sair1: TMenuItem;
     PRODUTOS1: TMenuItem;
     Fornecedores1: TMenuItem;
-    Fornecedores2: TMenuItem;
+    btn_fornecedores: TMenuItem;
     Cargos1: TMenuItem;
     Relatrios1: TMenuItem;
     Estoque1: TMenuItem;
     Funcionarios1: TMenuItem;
-    procedure Fornecedores2Click(Sender: TObject);
+    procedure btn_fornecedoresClick(Sender: TObject);
     procedure Funcionarios1Click(Sender: TObject);
     procedure Cargos1Click(Sender: TObject);
     procedure Fornecedores1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,7 +37,7 @@ implementation
 
 {$R *.dfm}
 
-uses Funcionarios, Usuarios, Cargos, Fornecedores;
+uses Funcionarios, Usuarios, Cargos, Fornecedores, Modulo, Login;
 
 
 procedure Tfrm_menu.Cargos1Click(Sender: TObject);
@@ -45,13 +46,20 @@ begin
   frm_cargos.ShowModal;
 end;
 
+procedure Tfrm_menu.FormCreate(Sender: TObject);
+begin
+  //permição para usuário admin (users)
+  if frm_login.perfil_user_logado = 'ADMIN' then
+  btn_fornecedores.Enabled := true;
+end;
+
 procedure Tfrm_menu.Fornecedores1Click(Sender: TObject);
 begin
   frm_fornecedores := Tfrm_fornecedores.Create(Self);
   frm_fornecedores.ShowModal;
 end;
 
-procedure Tfrm_menu.Fornecedores2Click(Sender: TObject);
+procedure Tfrm_menu.btn_fornecedoresClick(Sender: TObject);
 begin
   frm_usuarios := Tfrm_usuarios.Create(Self);
   frm_usuarios.ShowModal;

@@ -14,11 +14,12 @@ object frm_menu: Tfrm_menu
   Menu = MainMenu1
   OldCreateOrder = False
   WindowState = wsMaximized
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu
-    Left = 200
-    Top = 32
+    Left = 472
+    Top = 104
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
       object PRODUTOS1: TMenuItem
@@ -28,9 +29,10 @@ object frm_menu: Tfrm_menu
         Caption = 'Fornecedores'
         OnClick = Fornecedores1Click
       end
-      object Fornecedores2: TMenuItem
+      object btn_fornecedores: TMenuItem
         Caption = 'Usu'#225'rios'
-        OnClick = Fornecedores2Click
+        Enabled = False
+        OnClick = btn_fornecedoresClick
       end
       object Cargos1: TMenuItem
         Caption = 'Cargos'
