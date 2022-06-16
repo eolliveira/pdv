@@ -19,12 +19,14 @@ object frm_fornecedores: Tfrm_fornecedores
     Width = 817
     Height = 305
     DataSource = dm.ds_fornecedor
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = grid_fornecedoresDblClick
     Columns = <
       item
         Expanded = False
@@ -40,7 +42,7 @@ object frm_fornecedores: Tfrm_fornecedores
       item
         Expanded = False
         FieldName = 'endereco'
-        Width = 300
+        Width = 250
         Visible = True
       end
       item

@@ -12,6 +12,7 @@ type
     grid_fornecedores: TDBGrid;
     btn_novo: TButton;
     procedure btn_novoClick(Sender: TObject);
+    procedure grid_fornecedoresDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -19,6 +20,8 @@ type
     nome_fornec : string;
     endereco_fornec : string;
     telefone_fornec : string;
+
+    modoInsercao : Boolean;
   end;
 
 var
@@ -32,9 +35,23 @@ uses Modulo, FornecedorEdit;
 
 procedure Tfrm_fornecedores.btn_novoClick(Sender: TObject);
 begin
-  dm.modoInsercao := true;
+  modoInsercao := true;
   frm_fornecedores_edit := Tfrm_fornecedores_edit.Create(Self);
   frm_fornecedores_edit.ShowModal;
+end;
+
+procedure Tfrm_fornecedores.grid_fornecedoresDblClick(Sender: TObject);
+begin
+    id_fornec := dm.query_fornecedores.FieldByName('id').Value;
+    nome_fornec := dm.query_fornecedores.FieldByName('nome').Value;
+    endereco_fornec := dm.query_fornecedores.FieldByName('endereco').Value;
+    telefone_fornec := dm.query_fornecedores.FieldByName('telefone').Value;
+
+    modoInsercao := false;
+
+    frm_fornecedores_edit := Tfrm_fornecedores_edit.Create(Self);
+    frm_fornecedores_edit.ShowModal;
+
 end;
 
 end.

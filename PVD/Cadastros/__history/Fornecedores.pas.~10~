@@ -1,0 +1,40 @@
+unit Fornecedores;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls;
+
+type
+  Tfrm_fornecedores = class(TForm)
+    grid_fornecedores: TDBGrid;
+    btn_novo: TButton;
+    procedure btn_novoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    id_fornec : string;
+    nome_fornec : string;
+    endereco_fornec : string;
+    telefone_fornec : string;
+  end;
+
+var
+  frm_fornecedores: Tfrm_fornecedores;
+
+implementation
+
+{$R *.dfm}
+
+uses Modulo, FornecedorEdit;
+
+procedure Tfrm_fornecedores.btn_novoClick(Sender: TObject);
+begin
+  dm.modoInsercao := true;
+  frm_fornecedores_edit := Tfrm_fornecedores_edit.Create(Self);
+  frm_fornecedores_edit.ShowModal;
+end;
+
+end.

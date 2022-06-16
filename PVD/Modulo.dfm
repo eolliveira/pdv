@@ -120,7 +120,6 @@ object dm: Tdm
     Top = 288
   end
   object query_usuarios: TFDQuery
-    Active = True
     Connection = fd_cenecction
     SQL.Strings = (
       
@@ -160,7 +159,6 @@ object dm: Tdm
     end
   end
   object tb_usuario: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = fd_cenecction
     TableName = 'pvd.tb_usuario'
@@ -211,6 +209,7 @@ object dm: Tdm
     object tb_fornecedorid: TFDAutoIncField
       FieldName = 'id'
       Origin = 'id'
+      ReadOnly = True
     end
     object tb_fornecedornome: TStringField
       FieldName = 'nome'

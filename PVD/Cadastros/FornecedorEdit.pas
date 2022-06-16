@@ -69,9 +69,10 @@ begin
   btn_cancelar.Enabled := true;
   habilitaCampos;
 
-  dm.tb_funcionario.Edit;
+  dm.tb_fornecedor.Edit;
 
-  dm.modoInsercao := false;
+  frm_fornecedores.modoInsercao := false;
+
 end;
 
 procedure Tfrm_fornecedores_edit.btn_removerClick(Sender: TObject);
@@ -93,7 +94,7 @@ end;
 procedure Tfrm_fornecedores_edit.btn_salvarClick(Sender: TObject);
 begin
   //modo inserção
-  if dm.modoInsercao = true then
+  if frm_fornecedores.modoInsercao = true then
   begin
 
     //validação, campo usuário vazio
@@ -117,7 +118,7 @@ begin
   end;
 
   //modo edição
-  if dm.modoInsercao = false then
+  if frm_fornecedores.modoInsercao = false then
   begin
 
     //validação, campo usuário vazio
@@ -172,7 +173,7 @@ procedure Tfrm_fornecedores_edit.FormShow(Sender: TObject);
 begin
   dm.tb_fornecedor.Active := true;
 
-  if dm.modoInsercao = true then
+  if frm_fornecedores.modoInsercao = true then
   begin
     btn_salvar.Enabled := true;
     btn_editar.Enabled := false;
@@ -194,6 +195,8 @@ begin
     txt_telefone.Text := telefone_fornec;
 
     btn_salvar.Enabled := false;
+    btn_editar.Enabled := true;
+
   end;
 end;
 
