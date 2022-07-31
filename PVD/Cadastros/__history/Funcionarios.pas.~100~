@@ -1,0 +1,164 @@
+unit Funcionarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.StdCtrls, Data.DB,
+  Vcl.Grids, Vcl.DBGrids, Vcl.Menus, Vcl.ComCtrls, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  Tfrm_funcionarios = class(TForm)
+    PGFuncionario: TPageControl;
+    PConsulta: TTabSheet;
+    DBGrid1: TDBGrid;
+    Label1: TLabel;
+    txt_busca_nome: TEdit;
+    txt_busca_cpf: TMaskEdit;
+    rb_nome: TRadioButton;
+    rb_cpf: TRadioButton;
+    PCadastro: TTabSheet;
+    btn_novo: TButton;
+    lb_nome: TLabel;
+    lb_cpf: TLabel;
+    lb_telefone: TLabel;
+    lb_endereco: TLabel;
+    Label2: TLabel;
+    txt_nome: TEdit;
+    txt_endereco: TEdit;
+    cb_cargo: TComboBox;
+    txt_cpf: TMaskEdit;
+    txt_telefone: TMaskEdit;
+    btn_salvar: TButton;
+    btn_editar: TButton;
+    btn_remover: TButton;
+    btn_cancelar: TButton;
+    txt_cargo_id: TEdit;
+    FDQuery_func_cargo: TFDQuery;
+    DSFuncionario: TDataSource;
+    FDQuery_cargo: TFDQuery;
+    procedure DBGrid1DblClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure atualizaGrid;
+    procedure btn_novoClick(Sender: TObject);
+    procedure txt_busca_nomeChange(Sender: TObject);
+    procedure buscaPorNome;
+    procedure buscaPorCpf;
+    procedure rb_nomeClick(Sender: TObject);
+    procedure rb_cpfClick(Sender: TObject);
+    procedure txt_busca_cpfChange(Sender: TObject);
+  private
+    id_func : string;
+    nome_func : string;
+    cpf_func : string;
+    telefone_func : string;
+    endereco_func : string;
+    id_cargo_func : string;
+    cargo_func : string;
+  public
+
+  end;
+
+var
+  frm_funcionarios: Tfrm_funcionarios;
+
+implementation
+
+{$R *.dfm}
+
+uses Modulo, FuncionariosEdit;
+
+{ Tfrm_funcionarios }
+
+procedure Tfrm_funcionarios.btn_novoClick(Sender: TObject);
+begin
+  nome_func := 'novo';
+
+  frm_funcionarios_edit := Tfrm_funcionarios_edit.Create(Self);
+  frm_funcionarios_edit.ShowModal;
+end;
+
+procedure Tfrm_funcionarios.DBGrid1DblClick(Sender: TObject);
+begin
+
+  id_func := FDQuery_func_cargo.FieldByName('id').Value;
+  nome_func := FDQuery_func_cargo.FieldByName('nome').Value;
+  cpf_func := FDQuery_func_cargo.FieldByName('cpf').Value;
+  telefone_func := FDQuery_func_cargo.FieldByName('telefone').Value;
+  endereco_func := FDQuery_func_cargo.FieldByName('endereco').Value;
+  id_cargo_func := FDQuery_func_cargo.FieldByName('cargo_id').Value;
+  cargo_func := FDQuery_func_cargo.FieldByName('cargo').Value;
+
+   PGFuncionario.ActivePage := PCadastro;
+  //frm_funcionarios_edit := Tfrm_funcionarios_edit.Create(Self);
+  //frm_funcionarios_edit.ShowModal;
+end;
+
+procedure Tfrm_funcionarios.buscaPorCpf;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE cpf = :cpf');
+  dm.query_funcionario.ParamByName('cpf').Value := txt_busca_cpf.Text;
+  dm.query_funcionario.Open();
+end;
+
+
+procedure Tfrm_funcionarios.buscaPorNome;
+begin
+  dm.query_funcionario.Close;
+  dm.query_funcionario.SQL.Clear;
+  dm.query_funcionario.SQL.Add('SELECT * FROM tb_funcionario WHERE nome LIKE :nome');
+  dm.query_funcionario.ParamByName('nome').Value := txt_busca_nome.Text + '%';
+  dm.query_funcionario.Open();
+end;
+
+procedure Tfrm_funcionarios.FormShow(Sender: TObject);
+begin
+    atualizaGrid;
+end;
+
+procedure Tfrm_funcionarios.rb_cpfClick(Sender: TObject);
+begin
+  txt_busca_nome.Visible := false;
+  txt_busca_cpf.Visible := true;
+  txt_busca_cpf.SetFocus;
+  buscaPorCpf;
+end;
+
+procedure Tfrm_funcionarios.rb_nomeClick(Sender: TObject);
+begin
+  txt_busca_cpf.Visible := false;
+  txt_busca_nome.Visible := true;
+  atualizaGrid;
+end;
+
+procedure Tfrm_funcionarios.txt_busca_cpfChange(Sender: TObject);
+begin
+  if txt_busca_cpf.Text <> '___.___.___-__' then
+  begin
+    buscaPorCpf;
+  end
+  else
+    begin
+      atualizaGrid;
+    end;
+end;
+
+procedure Tfrm_funcionarios.txt_busca_nomeChange(Sender: TObject);
+begin
+  buscaPorNome
+end;
+
+procedure Tfrm_funcionarios.atualizaGrid;
+begin
+  //dm.query_funcionario.Close;
+  //dm.query_funcionario.SQL.Clear;
+  ///dm.query_funcionario.SQL.Add('SELECT f.id, f.nome, f.cpf, f.telefone, f.endereco, f.cargo_id, c.cargo FROM tb_funcionario f JOIN tb_cargo c ON c.id = f.cargo_id');
+  //FDQuery_func_cargo.Open();
+end;
+
+end.

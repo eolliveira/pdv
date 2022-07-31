@@ -1,11 +1,4 @@
-﻿[btn_novo]
-Coordinates=10,122,60,51
-
-[gd_cargos]
-Coordinates=107,190,66,33
-Visible=True
-
-[dm.tb_cargos]
+﻿[dm.tb_cargos]
 Coordinates=10,10,81,87
 
 [dm.ds_cargos]
@@ -15,5 +8,6 @@ Coordinates=299,122,84,33
 Coordinates=112,10,100,87
 
 []
-Coordinates=10,190,76,51
+Coordinates=10,122,60,51
+Visible=True
 

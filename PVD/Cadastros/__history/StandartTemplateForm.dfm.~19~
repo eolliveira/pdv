@@ -1,0 +1,123 @@
+object FStandartTemplateForm: TFStandartTemplateForm
+  Left = 0
+  Top = 0
+  Caption = 'FStandartTemplateForm'
+  ClientHeight = 475
+  ClientWidth = 1011
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pgcPrincipal: TPageControl
+    Left = 0
+    Top = 25
+    Width = 1011
+    Height = 450
+    ActivePage = tabSearch
+    Align = alClient
+    TabOrder = 0
+    ExplicitTop = 0
+    ExplicitHeight = 475
+    object tabSearch: TTabSheet
+      Caption = 'Consulta'
+      object DBGrid1: TDBGrid
+        Left = 48
+        Top = 96
+        Width = 833
+        Height = 321
+        DataSource = dsGeral
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        OnDblClick = DBGrid1DblClick
+      end
+      object cbbColunas: TComboBox
+        Left = 48
+        Top = 24
+        Width = 145
+        Height = 21
+        TabOrder = 1
+        Text = 'cbbColunas'
+        Items.Strings = (
+          'Preenchido')
+      end
+      object edtConsulta: TEdit
+        Left = 199
+        Top = 24
+        Width = 242
+        Height = 21
+        TabOrder = 2
+      end
+      object btnConsultar: TButton
+        Left = 472
+        Top = 22
+        Width = 75
+        Height = 25
+        Caption = 'btnConsultar'
+        TabOrder = 3
+        OnClick = btnConsultarClick
+      end
+    end
+    object tabForm: TTabSheet
+      Caption = 'Cadastro'
+      ImageIndex = 1
+      object pnlDados: TPanel
+        Left = 0
+        Top = 0
+        Width = 1003
+        Height = 422
+        Align = alClient
+        Color = clSilver
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitLeft = 208
+        ExplicitTop = 192
+        ExplicitWidth = 345
+        ExplicitHeight = 145
+      end
+    end
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 0
+    Top = 0
+    Width = 1011
+    Height = 25
+    DataSource = dsGeral
+    Align = alTop
+    TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 1003
+  end
+  object qryGeral: TFDQuery
+    Connection = dm.fd_cenecction
+    Left = 776
+    Top = 56
+    object qryGeralid: TFDAutoIncField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object qryGeralcargo: TStringField
+      FieldName = 'cargo'
+      Origin = 'cargo'
+      Required = True
+      Size = 50
+    end
+  end
+  object dsGeral: TDataSource
+    DataSet = qryGeral
+    OnStateChange = dsGeralStateChange
+    Left = 736
+    Top = 56
+  end
+end

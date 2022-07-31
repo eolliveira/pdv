@@ -18,8 +18,8 @@ object frm_menu: Tfrm_menu
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu
-    Left = 472
-    Top = 104
+    Left = 384
+    Top = 24
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
       object PRODUTOS1: TMenuItem

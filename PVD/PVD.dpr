@@ -12,7 +12,9 @@ uses
   FuncionariosEdit in 'Cadastros\FuncionariosEdit.pas' {frm_funcionarios_edit},
   UsuarioEdit in 'Cadastros\UsuarioEdit.pas' {frm_usuario_edit},
   Fornecedores in 'Cadastros\Fornecedores.pas' {frm_fornecedores},
-  FornecedorEdit in 'Cadastros\FornecedorEdit.pas' {frm_fornecedores_edit};
+  FornecedorEdit in 'Cadastros\FornecedorEdit.pas' {frm_fornecedores_edit},
+  StandartTemplateForm in 'Cadastros\StandartTemplateForm.pas' {FStandartTemplateForm},
+  Teste in 'Teste.pas' {FTeste};
 
 {$R *.res}
 

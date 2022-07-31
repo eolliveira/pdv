@@ -1,0 +1,61 @@
+inherited FTeste: TFTeste
+  Caption = 'FTeste'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pgcPrincipal: TPageControl
+    ActivePage = tabForm
+    inherited tabSearch: TTabSheet
+      inherited DBGrid1: TDBGrid
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'id'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'cargo'
+            Visible = True
+          end>
+      end
+    end
+    inherited tabForm: TTabSheet
+      inherited pnlDados: TPanel
+        ExplicitLeft = 0
+        ExplicitTop = 31
+        ExplicitWidth = 1003
+        ExplicitHeight = 422
+        object DBEdit1: TDBEdit
+          Left = 152
+          Top = 136
+          Width = 233
+          Height = 33
+          DataField = 'cargo'
+          DataSource = dsGeral
+          TabOrder = 0
+        end
+      end
+    end
+  end
+  inherited DBNavigator1: TDBNavigator
+    Hints.Strings = ()
+    ExplicitLeft = 0
+    ExplicitTop = 0
+    ExplicitWidth = 1011
+  end
+  inherited qryGeral: TFDQuery
+    Active = True
+    SQL.Strings = (
+      'SELECT * FROM tb_cargo')
+    Left = 784
+    inherited qryGeralid: TFDAutoIncField
+      Tag = 1
+      DisplayLabel = 'C'#243'digo'
+      ReadOnly = True
+    end
+    inherited qryGeralcargo: TStringField
+      Tag = 1
+      DisplayLabel = 'Descri'#231#227'o'
+    end
+  end
+end

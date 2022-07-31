@@ -6,7 +6,7 @@ object frm_usuarios: Tfrm_usuarios
   Caption = 'Usuarios'
   ClientHeight = 621
   ClientWidth = 994
-  Color = clBtnFace
+  Color = clMedGray
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -31,7 +31,7 @@ object frm_usuarios: Tfrm_usuarios
     Top = 35
     Width = 921
     Height = 270
-    DataSource = dm.ds_usuario
+    DataSource = DSFunc_user
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
@@ -44,6 +44,19 @@ object frm_usuarios: Tfrm_usuarios
       item
         Expanded = False
         FieldName = 'id'
+        Width = 32
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome'
+        Width = 122
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'perfil'
+        Width = 131
         Visible = True
       end
       item
@@ -55,22 +68,21 @@ object frm_usuarios: Tfrm_usuarios
         Expanded = False
         FieldName = 'senha'
         Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'perfil'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'funcionario_id'
-        Width = 174
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'nome'
-        Visible = True
       end>
+  end
+  object FD_query_user_func: TFDQuery
+    Active = True
+    Connection = dm.fd_cenecction
+    SQL.Strings = (
+      'SELECT f.id, f.nome, u.perfil, u.login, u.senha FROM '
+      'tb_funcionario f JOIN tb_usuario u '
+      'ON f.id = u.funcionario_id')
+    Left = 776
+    Top = 472
+  end
+  object DSFunc_user: TDataSource
+    DataSet = FD_query_user_func
+    Left = 776
+    Top = 400
   end
 end

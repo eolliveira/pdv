@@ -8,19 +8,12 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
   FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
-  FireDAC.Comp.DataSet;
+  FireDAC.Comp.DataSet, Data.DBXMySQL, Data.SqlExpr, Data.DbxSqlite;
 
 type
   Tdm = class(TDataModule)
     fd_cenecction: TFDConnection;
     FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
-    query_cargos: TFDQuery;
-    query_cargosid: TFDAutoIncField;
-    query_cargoscargo: TStringField;
-    tb_cargo: TFDTable;
-    tb_cargoid: TFDAutoIncField;
-    tb_cargocargo: TStringField;
-    ds_cargos: TDataSource;
     tb_funcionario: TFDTable;
     query_funcionario: TFDQuery;
     ds_funcionario: TDataSource;

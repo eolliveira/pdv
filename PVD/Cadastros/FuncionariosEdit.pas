@@ -56,7 +56,7 @@ implementation
 
 {$R *.dfm}
 
-uses Modulo, Funcionarios;
+uses Modulo, Funcionarios, Cargos;
 
 procedure Tfrm_funcionarios_edit.associaCampos;
 begin
@@ -108,7 +108,8 @@ procedure Tfrm_funcionarios_edit.btn_salvarClick(Sender: TObject);
 begin
 
   //modo inserção
-  if frm_funcionarios.nome_func = 'novo' then
+  //rm_funcionarios.nome_func = 'novo'
+  if 0 = 0 then
   begin
 
     if Trim(txt_nome.text) = '' then
@@ -155,16 +156,16 @@ begin
 
     associaCampos;
 
-    dm.query_cargos.Close;
-    dm.query_cargos.SQL.Clear;
-    dm.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo_id = :cargo_id WHERE id = :id');
-    dm.query_cargos.ParamByName('id').Value := id_func;
-    dm.query_cargos.ParamByName('nome').Value := txt_nome.Text;
-    dm.query_cargos.ParamByName('cpf').Value := txt_cpf.Text;
-    dm.query_cargos.ParamByName('telefone').Value := txt_telefone.Text;
-    dm.query_cargos.ParamByName('endereco').Value := txt_endereco.Text;
-    dm.query_cargos.ParamByName('cargo_id').Value := txt_cargo_id.Text;
-    dm.query_cargos.ExecSQL();
+    frm_cargos.query_cargos.Close;
+    frm_cargos.query_cargos.SQL.Clear;
+    frm_cargos.query_cargos.SQL.Add('UPDATE tb_funcionario SET nome = :nome, cpf = :cpf, telefone = :telefone, endereco = :endereco, cargo_id = :cargo_id WHERE id = :id');
+    frm_cargos.query_cargos.ParamByName('id').Value := id_func;
+    frm_cargos.query_cargos.ParamByName('nome').Value := txt_nome.Text;
+    frm_cargos.query_cargos.ParamByName('cpf').Value := txt_cpf.Text;
+    frm_cargos.query_cargos.ParamByName('telefone').Value := txt_telefone.Text;
+    frm_cargos.query_cargos.ParamByName('endereco').Value := txt_endereco.Text;
+    frm_cargos.query_cargos.ParamByName('cargo_id').Value := txt_cargo_id.Text;
+    frm_cargos.query_cargos.ExecSQL();
 
     messageDlg('Dados do Funcionário alterados com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
     Close;
@@ -176,20 +177,20 @@ end;
 procedure Tfrm_funcionarios_edit.carregaComboBox;
 begin
 
-  dm.query_cargos.Close;
-  dm.query_cargos.SQL.Clear;
-  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo ORDER BY cargo');
-  dm.query_cargos.Open;
+  frm_cargos.query_cargos.Close;
+  frm_cargos.query_cargos.SQL.Clear;
+  frm_cargos.query_cargos.SQL.Add('SELECT * FROM tb_cargo ORDER BY cargo');
+  frm_cargos.query_cargos.Open;
 
   //se houver registros em tb_cargos
-  if not dm.query_cargos.IsEmpty then
+  if not frm_cargos.query_cargos.IsEmpty then
   begin
 
     //eof aponta para o ultimo registro da query
-    while not dm.query_cargos.Eof do
+    while not frm_cargos.query_cargos.Eof do
     begin
-      cb_cargo.Items.Add(dm.query_cargos.FieldByName('cargo').AsString);
-      dm.query_cargos.Next;
+      cb_cargo.Items.Add(frm_cargos.query_cargos.FieldByName('cargo').AsString);
+      frm_cargos.query_cargos.Next;
     end;
 
   end;
@@ -197,14 +198,14 @@ end;
 
 procedure Tfrm_funcionarios_edit.cb_cargoChange(Sender: TObject);
 begin
-  dm.query_cargos.Close;
-  dm.query_cargos.SQL.Clear;
-  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE tb_cargo.cargo = :cargo');
-  dm.query_cargos.ParamByName('cargo').Value := cb_cargo.Text;
-  dm.query_cargos.Open;
+  frm_cargos.query_cargos.Close;
+  frm_cargos.query_cargos.SQL.Clear;
+  frm_cargos.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE tb_cargo.cargo = :cargo');
+  frm_cargos.query_cargos.ParamByName('cargo').Value := cb_cargo.Text;
+  frm_cargos.query_cargos.Open;
 
   //pega o id do cargo selecionado
-  txt_cargo_id.Text := dm.query_cargos.FieldByName('id').AsString;
+  txt_cargo_id.Text := frm_cargos.query_cargos.FieldByName('id').AsString;
 
 end;
 
@@ -218,9 +219,9 @@ procedure Tfrm_funcionarios_edit.FormShow(Sender: TObject);
 begin
 
   //ativa dataSet da TB
-  dm.tb_funcionario.Active := true;
+  //dm.tb_funcionario.Active := true;
 
-  if frm_funcionarios.nome_func = 'novo' then
+  if 0 = 0 then
   begin
     btn_salvar.Enabled := true;
     btn_editar.Enabled := false;
@@ -241,12 +242,12 @@ begin
     carregaComboBox;
 
     //associa variaveis da tela Formulario
-    id_func := frm_funcionarios.id_func;
-    nome_func := frm_funcionarios.nome_func;
-    cpf_func := frm_funcionarios.cpf_func;
-    telefone_func := frm_funcionarios.telefone_func;
-    endereco_func := frm_funcionarios.endereco_func;
-    id_cargo_func := frm_funcionarios.id_cargo_func;
+   // id_func := frm_funcionarios.id_func;
+    //nome_func := frm_funcionarios.nome_func;
+    //cpf_func := frm_funcionarios.cpf_func;
+    //telefone_func := frm_funcionarios.telefone_func;
+    //endereco_func := frm_funcionarios.endereco_func;
+    //id_cargo_func := frm_funcionarios.id_cargo_func;
     //cargo_func := frm_funcionarios.cargo_func;
 
     preencheCampos;
@@ -276,14 +277,14 @@ begin
   txt_telefone.Text := telefone_func;
 
   //buscando pelo id do cargo
-  dm.query_cargos.Close;
-  dm.query_cargos.SQL.Clear;
-  dm.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE id = :id');
-  dm.query_cargos.ParamByName('id').Value := id_cargo_func;
-  dm.query_cargos.Open;
+  frm_cargos.query_cargos.Close;
+  frm_cargos.query_cargos.SQL.Clear;
+  frm_cargos.query_cargos.SQL.Add('SELECT * FROM tb_cargo WHERE id = :id');
+  frm_cargos.query_cargos.ParamByName('id').Value := id_cargo_func;
+  frm_cargos.query_cargos.Open;
 
-  txt_cargo_id.Text := dm.query_cargos.FieldByName('id').Value;
-  cb_cargo.Text := dm.query_cargos.FieldByName('cargo').Value;
+  txt_cargo_id.Text := frm_cargos.query_cargos.FieldByName('id').Value;
+  cb_cargo.Text := frm_cargos.query_cargos.FieldByName('cargo').Value;
 
 
   //cb_cargo.Text := cargo_func;

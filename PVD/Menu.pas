@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls, Vcl.ExtCtrls,
+  System.Actions, Vcl.ActnList, Vcl.ComCtrls;
 
 type
   Tfrm_menu = class(TForm)
@@ -38,13 +39,13 @@ implementation
 
 {$R *.dfm}
 
-uses Funcionarios, Usuarios, Cargos, Fornecedores, Modulo, Login;
+uses Funcionarios, Teste, Usuarios, Cargos, Fornecedores, Modulo, Login;
 
 
 procedure Tfrm_menu.Cargos1Click(Sender: TObject);
 begin
-  frm_cargos := Tfrm_cargos.Create(Self);
-  frm_cargos.ShowModal;
+  FTeste := TFTeste.Create(Self);
+  FTeste.ShowModal;
 end;
 
 procedure Tfrm_menu.FormCreate(Sender: TObject);

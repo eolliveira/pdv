@@ -5,12 +5,17 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls;
+  Vcl.StdCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Menus;
 
 type
   Tfrm_usuarios = class(TForm)
     btn_novo: TButton;
     grid_usuarios: TDBGrid;
+    FD_query_user_func: TFDQuery;
+    DSFunc_user: TDataSource;
     procedure atualizaGrid;
     procedure btn_novoClick(Sender: TObject);
     procedure grid_usuariosDblClick(Sender: TObject);
